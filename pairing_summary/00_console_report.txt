@@ -1,0 +1,77 @@
+
+══════════════════════════════════════════════════════════════
+  AIMS-TBI  ─  T1 / Lesion Pairing Summary
+══════════════════════════════════════════════════════════════
+
+Total scan IDs found                     333
+
+══════════════════════════════════════════════════════════════
+  File Presence
+══════════════════════════════════════════════════════════════
+  Scans with T1                          329
+  Scans with Lesion mask                 329
+  Scans with dMRI                        144
+  Scans with bvec                        145
+  Scans with bval                        145
+
+══════════════════════════════════════════════════════════════
+  T1 ↔ Lesion Pairing
+══════════════════════════════════════════════════════════════
+  Matched pairs (T1 + Lesion both exist) 329
+  Unmatched (missing one or both)        4
+    ├─ Orphan T1  (Lesion missing)':<34 0
+    └─ Orphan Lesion (T1 missing)':<34 0
+
+══════════════════════════════════════════════════════════════
+  Shape Consistency (matched pairs only)
+══════════════════════════════════════════════════════════════
+  T1 shape == Lesion shape               328
+  Shape MISMATCH                         1
+
+══════════════════════════════════════════════════════════════
+  Lesion Content (matched pairs only)
+══════════════════════════════════════════════════════════════
+  Positive lesion  (voxels > 0)          189
+  Empty / lesion-free (voxels = 0)       139
+  Load error (corrupt / truncated)       1
+
+  Positive rate : 57.6%   (189/328)
+  Empty rate    : 42.4%   (139/328)
+
+══════════════════════════════════════════════════════════════
+  Lesion Volume (positive cases, in voxels)
+══════════════════════════════════════════════════════════════
+  Min                          14
+  Max                     223,372
+  Mean                   13,143.2
+  Median                  3,253.0
+  Std dev                28,159.1
+
+══════════════════════════════════════════════════════════════
+  Lesion Size Buckets (positive cases)
+══════════════════════════════════════════════════════════════
+  1–10           0  
+  11–100        14  ███████
+  101–500       29  ████████████████
+  501–1K        19  ██████████
+  1K–5K         54  ██████████████████████████████
+  5K–20K        41  ██████████████████████
+  20K–50K       18  ██████████
+  >50K          14  ███████
+
+══════════════════════════════════════════════════════════════
+  dMRI Completeness (for scans that have dMRI)
+══════════════════════════════════════════════════════════════
+  Scans with dMRI            : 144
+  dMRI + bvec + bval (full)  : 144
+  dMRI missing bvec          : 0
+  dMRI missing bval          : 0
+  dMRI + positive lesion     : 81
+  dMRI + empty lesion        : 59
+
+══════════════════════════════════════════════════════════════
+  Files with Load Errors
+══════════════════════════════════════════════════════════════
+  scan_0435  T1_err=None  Lesion_err=File /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI/scan_0435_Lesion.nii.gz is not a gzip file
+
+══════════════════════════════════════════════════════════════

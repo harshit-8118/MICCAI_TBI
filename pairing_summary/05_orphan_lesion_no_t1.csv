@@ -1,0 +1,1 @@
+scan_id,has_t1,has_lesion,has_dmri,has_bvec,has_bval,t1_path,lesion_path,t1_shape,t1_error,lesion_shape,lesion_voxels,lesion_unique,lesion_error,matched,shape_match,lesion_positive,lesion_empty,has_any_error,pairing_status
