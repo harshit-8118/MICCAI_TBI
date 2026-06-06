@@ -1,0 +1,8 @@
+numpy>=1.26
+scikit-learn>=1.4
+pyyaml>=6.0
+tqdm>=4.66
+nibabel>=5.2
+torch>=2.2
+dynamic-network-architectures>=0.4.1
+nnunetv2>=2.5

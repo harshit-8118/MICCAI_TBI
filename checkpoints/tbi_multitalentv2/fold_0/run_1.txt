@@ -1,0 +1,9 @@
+Run log for fold 0
+Device: cuda
+AMP enabled: True
+Staged tuning: True
+Validation interval epochs: 10
+Final validation: True
+Best checkpoint metric: train_dice (max)
+Output dir: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0
+phase	epoch	stage	train_loss	train_dice	val_loss	val_dice	monitor_metric	monitor_value	lr_head	lr_partial	lr_full

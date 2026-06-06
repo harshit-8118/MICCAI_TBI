@@ -1,0 +1,6 @@
+cache/
+checkpoints/tbi_multitalentv2/fold_0/validation_exports/nifti/
+checkpoints/tbi_multitalentv2/fold_0/validation_exports/previews/
+checkpoints/tbi_multitalentv2/fold_0/validation_exports/previews
+*.pt 
+*.png

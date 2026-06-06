@@ -1,0 +1,72 @@
+paths:
+  dataset_dir: "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI"
+  pretrained_checkpoint: "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/checkpoint_final.pth"
+  pretrained_plans: "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json"
+  work_dir: "checkpoints/tbi_multitalentv2"
+  cache_dir: "checkpoints/cache"
+  splits_file: "checkpoints/tbi_splits_5fold.json"
+  predictions_dir: "predictions"
+
+data:
+  target_spacing: [1.0, 1.0, 1.0]
+  patch_size: [192, 192, 192]
+  input_modalities: ["T1"]
+  include_dmri: false
+  dmri_reduce: "mean"
+  dmri_b0_threshold: 50.0
+  allow_missing_modalities: true
+  normalize_foreground_only: true
+  cache_preprocessed: true
+  oversample_foreground_prob: 0.33
+
+model:
+  in_channels: 1
+  out_channels: 2
+  deep_supervision: false
+  load_pretrained: true
+  strict_load: false
+  skip_pretrained_name_patterns: ["seg", "final", "classifier", "output"]
+
+training:
+  seed: 42
+  num_folds: 5
+  fold: 0
+  batch_size: 1
+  num_workers: 8
+  prefetch_factor: 4
+  max_epochs: 150
+  base_lr: 0.001
+  weight_decay: 0.00001
+  poly_power: 0.9
+  warmup_epochs: 10
+  use_amp: true
+  optimizer: "adamw"
+  loss: "dice_ce"
+  class_weights: [1.0, 1.0]
+  metric_threshold: 0.5
+  grad_clip_norm: 12.0
+  save_every_epoch: false
+  validation_interval_epochs: 0
+  final_validation: true
+  best_checkpoint_metric: "train_dice"
+  best_checkpoint_mode: "max"
+  staged_tuning:
+    enabled: true
+    head_only_epochs: 20
+    partial_tune_epochs: 50
+    head_lr: 0.001
+    partial_lr: 0.0003
+    full_lr: 0.0001
+    head_patterns: ["seg", "final", "classifier", "output"]
+    partial_patterns: ["decoder", "up", "localization", "stages.4", "stages.5", "stages.6"]
+
+inference:
+  roi_size: [192, 192, 192]
+  overlap: 0.5
+  sw_batch_size: 1
+  use_amp: true
+
+ensemble:
+  enabled: true
+  checkpoint_glob: "checkpoints/tbi_multitalentv2/fold_*/best.pt"
+  output_name: "ensemble"
