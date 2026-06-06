@@ -4,3 +4,4 @@
 *.npz
 MICCAI_AIMS_TBI
 MultiTalentV2_pretrained
+*.pyc

@@ -158,3 +158,9 @@ train	148	full	0.227034	0.806203	nan	nan	train_dice	0.806203	0.00003147	0.000009
 train	149	full	0.218123	0.804512	nan	nan	train_dice	0.804512	0.00002185	0.00000655	0.00000218
 train	150	full	0.204632	0.803378	0.353164	0.657865	train_dice	0.803378	0.00001171	0.00000351	0.00000117
 final_validation	148	best	0.227034	0.806203	0.391528	0.660797	train_dice	0.806203	0.00003147	0.00000944	0.00000315
+
+
+
+All cases: total=329, lesion_positive=190, lesion_empty=139, dmri=140
+Fold 0 train: total=263, lesion_positive=152, lesion_empty=111, dmri=112
+Fold 0 val: total=66, lesion_positive=38, lesion_empty=28, dmri=28

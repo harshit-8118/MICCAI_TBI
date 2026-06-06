@@ -211,6 +211,33 @@ def _next_run_log_path(output_dir: Path) -> Path:
     return output_dir / f"run_{next_index}.txt"
 
 
+def _count_lesion_voxels(record) -> int:
+    from .data import load_nifti_robust
+
+    lesion = np.asarray(load_nifti_robust(record.lesion_path).dataobj)
+    return int(np.count_nonzero(lesion > 0))
+
+
+def _summarize_records(records) -> dict[str, int]:
+    lesion_positive = 0
+    lesion_empty = 0
+    dmri = 0
+    for record in records:
+        lesion_voxels = _count_lesion_voxels(record)
+        if lesion_voxels > 0:
+            lesion_positive += 1
+        else:
+            lesion_empty += 1
+        if record.has_dmri:
+            dmri += 1
+    return {
+        "total": len(records),
+        "lesion_positive": lesion_positive,
+        "lesion_empty": lesion_empty,
+        "dmri": dmri,
+    }
+
+
 def _batch_dice(logits: torch.Tensor, targets: torch.Tensor) -> float:
     predictions = torch.argmax(logits, dim=1)
     scores = []
@@ -272,7 +299,7 @@ def build_dataloaders(config, fold: int, base_dir: Path):
         num_workers=0,
         pin_memory=True,
     )
-    return train_loader, val_loader
+    return train_loader, val_loader, train_records, val_records
 
 
 def build_model(config, base_dir: Path):
@@ -294,11 +321,13 @@ def build_model(config, base_dir: Path):
         print(f"Loaded pretrained backbone. Skipped {len(skipped)} incompatible keys.")
     return model.to(memory_format=torch.channels_last_3d)
 
+
+
 def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
     set_seed(int(config.training.seed) + fold)
     configure_torch_for_speed()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    train_loader, val_loader = build_dataloaders(config, fold, base_dir)
+    train_loader, val_loader, train_records, val_records = build_dataloaders(config, fold, base_dir)
     model = build_model(config, base_dir).to(device)
 
     staged = _get_staged_tuning(config)
@@ -326,6 +355,9 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
     output_dir = resolve_path(base_dir, config.paths.work_dir) / f"fold_{fold}"
     output_dir.mkdir(parents=True, exist_ok=True)
     run_log_path = _next_run_log_path(output_dir)
+    dataset_summary = _summarize_records(train_records + val_records)
+    train_summary = _summarize_records(train_records)
+    val_summary = _summarize_records(val_records)
     best_monitor_value = -math.inf if best_checkpoint_mode == "max" else math.inf
     best_epoch = 0
     best_path = output_dir / "best.pt"
@@ -359,6 +391,27 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
         handle.write(f"Final validation: {final_validation}\n")
         handle.write(f"Best checkpoint metric: {best_checkpoint_metric} ({best_checkpoint_mode})\n")
         handle.write(f"Output dir: {output_dir}\n")
+        handle.write(
+            "Dataset summary: "
+            f"total={dataset_summary['total']}, "
+            f"lesion_positive={dataset_summary['lesion_positive']}, "
+            f"lesion_empty={dataset_summary['lesion_empty']}, "
+            f"dmri={dataset_summary['dmri']}\n"
+        )
+        handle.write(
+            "Train split summary: "
+            f"total={train_summary['total']}, "
+            f"lesion_positive={train_summary['lesion_positive']}, "
+            f"lesion_empty={train_summary['lesion_empty']}, "
+            f"dmri={train_summary['dmri']}\n"
+        )
+        handle.write(
+            "Val split summary: "
+            f"total={val_summary['total']}, "
+            f"lesion_positive={val_summary['lesion_positive']}, "
+            f"lesion_empty={val_summary['lesion_empty']}, "
+            f"dmri={val_summary['dmri']}\n"
+        )
         handle.write("phase\tepoch\tstage\ttrain_loss\ttrain_dice\tval_loss\tval_dice\tmonitor_metric\tmonitor_value\tlr_head\tlr_partial\tlr_full\n")
 
     for epoch in range(int(config.training.max_epochs)):
