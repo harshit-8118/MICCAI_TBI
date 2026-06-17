@@ -10,16 +10,16 @@ from typing import Iterable
 
 import numpy as np
 import torch
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, WeightedRandomSampler
 from tqdm.auto import tqdm
 
 from .config import ensure_parent, load_config, resolve_path
-from .data import TBIDataset, discover_cases
+from .data import TBIDataset, discover_cases, make_stratification_labels
 from .infer import predict_logits
 from .losses import dice_ce_loss
 from .model import build_backbone, load_pretrained_weights
 from .splits import load_splits, split_records
-
+from .lr_scheduler import StagedPolyLRScheduler
 
 def set_seed(seed: int) -> None:
     random.seed(seed)
@@ -44,6 +44,11 @@ def dice_score(prediction: np.ndarray, target: np.ndarray, smooth: float = 1e-5)
     if denominator == 0:
         return 1.0
     return float((2.0 * intersection + smooth) / (denominator + smooth))
+
+
+def _size_from_label(label: str) -> str:
+    """'tiny_t1' -> 'tiny',  'empty_dmri' -> 'empty', etc."""
+    return label.split("_")[0]
 
 
 def build_optimizer(model: torch.nn.Module, name: str, lr: float, weight_decay: float) -> torch.optim.Optimizer:
@@ -166,17 +171,28 @@ def build_stage_optimizer(model: torch.nn.Module, config) -> torch.optim.Optimiz
         category = _categorize_parameter(name, head_patterns, partial_patterns)
         groups[category].append(parameter)
 
-    param_groups = []
+    head_only_epochs = int(getattr(staged, "head_only_epochs", 0)) if staged else 0    
+    partial_tune_epochs = int(getattr(staged, "partial_tune_epochs", 0)) if staged else 0
+
+    param_groups = []    
+
     for category in ("head", "partial", "full"):
-        if groups[category]:
-            param_groups.append(
-                {
-                    "params": groups[category],
-                    "lr": learning_rates[category],
-                    "base_lr": learning_rates[category],
-                    "group_name": category,
-                }
-            )
+        if not groups[category]:
+            continue
+        if category == "head" and head_only_epochs == 0:
+            groups["full"].extend(groups["head"])
+            continue
+        if category == "partial" and partial_tune_epochs == 0:
+            groups["full"].extend(groups["partial"])
+            continue
+        param_groups.append(
+            {
+                "params": groups[category],
+                "lr": learning_rates[category],
+                "base_lr": learning_rates[category],
+                "group_name": category,
+            }
+        )
     if not param_groups:
         raise RuntimeError("No trainable parameters were found for the current tuning configuration.")
     if not groups["head"]:
@@ -238,6 +254,89 @@ def _summarize_records(records) -> dict[str, int]:
     }
 
 
+def _namespace_to_dict(value):
+    if isinstance(value, dict):
+        return {key: _namespace_to_dict(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_namespace_to_dict(item) for item in value]
+    if hasattr(value, "__dict__"):
+        return {key: _namespace_to_dict(item) for key, item in value.__dict__.items()}
+    return value
+
+
+def _lesion_positive_flags(records) -> list[bool]:
+    return [_count_lesion_voxels(record) > 0 for record in records]
+
+
+def _build_case_sampler(records, config, fold: int) -> tuple[WeightedRandomSampler | None, dict[str, float | int | bool]]:
+    sampling = getattr(config.training, "case_sampling", None)
+    summary = {
+        "enabled": False,
+        "target_positive_fraction": float("nan"),
+        "target_empty_fraction": float("nan"),
+        "positive_weight": float("nan"),
+        "empty_weight": float("nan"),
+        "num_samples": len(records),
+        "replacement": True,
+        "size_weights": {},
+        "label_counts": {},
+    }
+    if sampling is None or not bool(getattr(sampling, "enabled", False)):
+        return None, summary
+
+    positive_fraction = float(getattr(sampling, "positive_fraction", 0.5))
+    positive_fraction = min(max(positive_fraction, 0.0), 1.0)
+    replacement = bool(getattr(sampling, "replacement", True))
+    epoch_length_multiplier = float(getattr(sampling, "epoch_length_multiplier", 1.0))
+    num_samples = max(1, int(round(len(records) * epoch_length_multiplier)))
+
+    _default_size_weights = {"empty": 1.0, "tiny": 3.0, "small": 2.0, "large": 1.5}
+    cfg_sw = getattr(sampling, "size_weights", None)
+    if cfg_sw is None:
+        size_weights = _default_size_weights.copy()
+    elif isinstance(cfg_sw, dict):
+        size_weights = {**_default_size_weights, **{k: float(v) for k, v in cfg_sw.items()}}
+    else:
+        # namespace object
+        size_weights = {**_default_size_weights,
+                        **{k: float(v) for k, v in vars(cfg_sw).items()}}
+
+    labels = make_stratification_labels(records)   # e.g. ["tiny_t1", "empty_dmri", ...]
+    import collections
+    label_counts = dict(collections.Counter(labels))
+
+    weights = []
+    for label in labels:
+        size = _size_from_label(label)
+        weights.append(size_weights.get(size, 1.0))
+ 
+    sampler = WeightedRandomSampler(
+        weights=torch.as_tensor(weights, dtype=torch.double),
+        num_samples=num_samples,
+        replacement=replacement,
+        generator=torch.Generator().manual_seed(int(config.training.seed) + int(fold)),
+    )
+    positive_labels = {"tiny", "small", "large"}
+    total_w  = sum(weights)
+    pos_w = sum(w for w, lbl in zip(weights, labels)
+                   if _size_from_label(lbl) in positive_labels)
+    effective_pos_fraction = pos_w / total_w if total_w > 0 else float("nan")
+ 
+    summary = {
+        "enabled": True,
+        "target_positive_fraction": positive_fraction,   # from config (reference)
+        "effective_positive_fraction": effective_pos_fraction,
+        "target_empty_fraction": 1.0 - positive_fraction,
+        "positive_weight": float("nan"),   # n/a — per-size now
+        "empty_weight": size_weights.get("empty", 1.0),
+        "num_samples": num_samples,
+        "replacement": replacement,
+        "size_weights": size_weights,
+        "label_counts": label_counts,
+    }
+    return sampler, summary
+
+
 def _batch_dice(logits: torch.Tensor, targets: torch.Tensor) -> float:
     predictions = torch.argmax(logits, dim=1)
     scores = []
@@ -255,6 +354,7 @@ def load_case_records_for_fold(config, fold: int, base_dir: Path):
 
 def build_dataloaders(config, fold: int, base_dir: Path):
     train_records, val_records = load_case_records_for_fold(config, fold, base_dir)
+    train_sampler, sampling_summary = _build_case_sampler(train_records, config, fold)
     train_dataset = TBIDataset(
         records=train_records,
         patch_size=config.data.patch_size,
@@ -288,7 +388,8 @@ def build_dataloaders(config, fold: int, base_dir: Path):
     train_loader = DataLoader(
         train_dataset,
         batch_size=config.training.batch_size,
-        shuffle=True,
+        shuffle=train_sampler is None,
+        sampler=train_sampler,
         num_workers=config.training.num_workers,
         **loader_kwargs,
     )
@@ -299,7 +400,44 @@ def build_dataloaders(config, fold: int, base_dir: Path):
         num_workers=0,
         pin_memory=True,
     )
-    return train_loader, val_loader, train_records, val_records
+    return train_loader, val_loader, train_records, val_records, sampling_summary
+
+
+def _init_wandb_run(config, fold: int, output_dir: Path, dataset_summary: dict[str, int], train_summary: dict[str, int], val_summary: dict[str, int], sampling_summary: dict[str, float | int | bool]):
+    wandb_config = getattr(config, "wandb", None)
+    if wandb_config is None or not bool(getattr(wandb_config, "enabled", False)):
+        return None
+    try:
+        import wandb
+    except ImportError:
+        print("Warning: wandb is enabled in config but the package is not installed; skipping W&B logging.")
+        return None
+
+    run_name = getattr(wandb_config, "name", None) or f"fold_{fold}_{output_dir.name}"
+    mode = str(getattr(wandb_config, "mode", "offline"))
+    tags = getattr(wandb_config, "tags", None)
+    notes = getattr(wandb_config, "notes", None)
+    run = wandb.init(
+        project=getattr(wandb_config, "project", "AIMS-TBI-MultiTalentV2"),
+        entity=getattr(wandb_config, "entity", None),
+        name=run_name,
+        dir=str(output_dir / "wandb"),
+        mode=mode,
+        config=_namespace_to_dict(config),
+        tags=tags,
+        notes=notes,
+        reinit=True,
+    )
+    run.summary["dataset/total"] = dataset_summary["total"]
+    run.summary["dataset/lesion_positive"] = dataset_summary["lesion_positive"]
+    run.summary["dataset/lesion_empty"] = dataset_summary["lesion_empty"]
+    run.summary["dataset/dmri"] = dataset_summary["dmri"]
+    run.summary["train/total"] = train_summary["total"]
+    run.summary["val/total"] = val_summary["total"]
+    run.summary["sampling/enabled"] = sampling_summary["enabled"]
+    run.summary["sampling/target_positive_fraction"] = sampling_summary["target_positive_fraction"]
+    run.summary["sampling/target_empty_fraction"] = sampling_summary["target_empty_fraction"]
+    return run
 
 
 def build_model(config, base_dir: Path):
@@ -310,8 +448,8 @@ def build_model(config, base_dir: Path):
         out_channels=config.model.out_channels,
         deep_supervision=config.model.deep_supervision,
     )
-    with open('model.txt', 'w') as f: 
-        f.write(str(model))
+    # with open('model.txt', 'w') as f: 
+    #     f.write(str(model))
     if config.model.load_pretrained:
         skipped = load_pretrained_weights(
             model=model,
@@ -322,12 +460,11 @@ def build_model(config, base_dir: Path):
     return model.to(memory_format=torch.channels_last_3d)
 
 
-
 def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
     set_seed(int(config.training.seed) + fold)
     configure_torch_for_speed()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    train_loader, val_loader, train_records, val_records = build_dataloaders(config, fold, base_dir)
+    train_loader, val_loader, train_records, val_records, sampling_summary = build_dataloaders(config, fold, base_dir)
     model = build_model(config, base_dir).to(device)
 
     staged = _get_staged_tuning(config)
@@ -337,6 +474,7 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
         ["decoder", "up", "localization", "stages.4", "stages.5", "stages.6"],
     )
     optimizer = build_stage_optimizer(model, config)
+    scheduler = StagedPolyLRScheduler(optimizer, config)
     amp_enabled = bool(config.training.use_amp) and device.type == "cuda"
     scaler = torch.amp.GradScaler("cuda", enabled=amp_enabled)
     class_weights = torch.tensor(config.training.class_weights, dtype=torch.float32, device=device)
@@ -358,6 +496,7 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
     dataset_summary = _summarize_records(train_records + val_records)
     train_summary = _summarize_records(train_records)
     val_summary = _summarize_records(val_records)
+    wandb_run = _init_wandb_run(config, fold, output_dir, dataset_summary, train_summary, val_summary, sampling_summary)
     best_monitor_value = -math.inf if best_checkpoint_mode == "max" else math.inf
     best_epoch = 0
     best_path = output_dir / "best.pt"
@@ -412,18 +551,52 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
             f"lesion_empty={val_summary['lesion_empty']}, "
             f"dmri={val_summary['dmri']}\n"
         )
+        handle.write(
+            "Case sampling: "
+            f"enabled={sampling_summary['enabled']}, "
+            f"target_positive_fraction={sampling_summary['target_positive_fraction']}, "
+            f"target_empty_fraction={sampling_summary['target_empty_fraction']}, "
+            f"positive_weight={sampling_summary['positive_weight']}, "
+            f"empty_weight={sampling_summary['empty_weight']}, "
+            f"num_samples={sampling_summary['num_samples']}, "
+            f"replacement={sampling_summary['replacement']}\n"
+        )
         handle.write("phase\tepoch\tstage\ttrain_loss\ttrain_dice\tval_loss\tval_dice\tmonitor_metric\tmonitor_value\tlr_head\tlr_partial\tlr_full\n")
+
+    if wandb_run is not None:
+        wandb_run.log(
+            {
+                "data/total": dataset_summary["total"],
+                "data/lesion_positive": dataset_summary["lesion_positive"],
+                "data/lesion_empty": dataset_summary["lesion_empty"],
+                "data/dmri": dataset_summary["dmri"],
+                "split/train_total": train_summary["total"],
+                "split/train_lesion_positive": train_summary["lesion_positive"],
+                "split/train_lesion_empty": train_summary["lesion_empty"],
+                "split/val_total": val_summary["total"],
+                "split/val_lesion_positive": val_summary["lesion_positive"],
+                "split/val_lesion_empty": val_summary["lesion_empty"],
+                "sampling/enabled": sampling_summary["enabled"],
+                "sampling/target_positive_fraction": sampling_summary["target_positive_fraction"],
+                "sampling/target_empty_fraction": sampling_summary["target_empty_fraction"],
+                "sampling/positive_weight": sampling_summary["positive_weight"],
+                "sampling/empty_weight": sampling_summary["empty_weight"],
+                "sampling/num_samples": sampling_summary["num_samples"],
+            },
+            step=0,
+        )
 
     for epoch in range(int(config.training.max_epochs)):
         stage = _stage_for_epoch(epoch, config)
         trainable_counts = _apply_stage_freezing(model, stage, head_patterns, partial_patterns)
-        lr_scale = _lr_scale_for_epoch(
-            epoch=epoch,
-            max_epochs=int(config.training.max_epochs),
-            warmup_epochs=int(config.training.warmup_epochs),
-            poly_power=float(config.training.poly_power),
-        )
-        lr_summary = _apply_lr_scale(optimizer, lr_scale)
+        # lr_scale = _lr_scale_for_epoch(
+        #     epoch=epoch,
+        #     max_epochs=int(config.training.max_epochs),
+        #     warmup_epochs=int(config.training.warmup_epochs),
+        #     poly_power=float(config.training.poly_power),
+        # )
+        # lr_summary = _apply_lr_scale(optimizer, lr_scale)
+        lr_summary = scheduler.step(epoch)
         model.train()
         running_loss = 0.0
         running_dice = 0.0
@@ -454,13 +627,14 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
         val_loss = float("nan")
         val_dice = float("nan")
         if validation_interval > 0 and (epoch + 1) % validation_interval == 0:
-            val_loss, val_dice = evaluate_fold(
+            val_loss, val_dice, per_size_dice = evaluate_fold(
                 model=model,
                 loader=val_loader,
                 config=config,
                 device=device,
                 use_amp=amp_enabled,
                 class_weights=class_weights,
+                val_records=val_records,
             )
         if best_checkpoint_metric == "train_dice":
             monitor_value = average_dice
@@ -510,6 +684,34 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
             f"trainable(head/partial/full)={trainable_counts[0]}/{trainable_counts[1]}/{trainable_counts[2]}"
         )
 
+        if wandb_run is not None:
+            wandb_run.log(
+                {
+                    "epoch": epoch + 1,
+                    "train/loss": average_loss,
+                    "train/dice": average_dice,
+                    "val/loss": val_loss,
+                    "val/dice": val_dice,
+                    "monitor/value": monitor_value,
+                    "monitor/metric": best_checkpoint_metric,
+                    "lr/head": lr_head,
+                    "lr/partial": lr_partial,
+                    "lr/full": lr_full,
+                    "stage": stage,
+                    "stage_trainable/head": trainable_counts[0],
+                    "stage_trainable/partial": trainable_counts[1],
+                    "stage_trainable/full": trainable_counts[2],
+                    "val/dice_tiny":  per_size_dice["tiny"],
+                    "val/dice_small": per_size_dice["small"],
+                    "val/dice_large": per_size_dice["large"],
+                    "val/dice_empty": per_size_dice["empty"],
+                    "val/n_tiny":     per_size_dice["n_tiny"],
+                    "val/n_small":    per_size_dice["n_small"],
+                    "val/n_large":    per_size_dice["n_large"],
+                },
+                step=epoch + 1,
+            )
+
         payload = {
             "epoch": epoch + 1,
             "model_state": model.state_dict(),
@@ -528,6 +730,11 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
             best_monitor_value = monitor_value
             best_epoch = epoch + 1
             torch.save(payload, best_path)
+            with run_log_path.open("a", encoding="utf-8") as handle:
+                handle.write(
+                    f"saved\t{epoch + 1}\t{stage}\t{average_loss:.6f}\t{average_dice:.6f}\t"
+                    f"{val_loss:.6f}\t{val_dice:.6f}\n"
+                )
         if config.training.save_every_epoch:
             torch.save(payload, output_dir / f"epoch_{epoch + 1:04d}.pt")
 
@@ -576,6 +783,19 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
             f"Final validation on best checkpoint (epoch {best_payload.get('epoch', best_epoch):03d}) | "
             f"val_loss={final_val_loss:.4f} | val_dice={final_val_dice:.4f}"
         )
+        if wandb_run is not None:
+            wandb_run.log(
+                {
+                    "final_validation/loss": final_val_loss,
+                    "final_validation/dice": final_val_dice,
+                    "final_validation/best_epoch": int(best_payload.get("epoch", best_epoch)),
+                    "final_validation/best_monitor": float(best_payload.get("monitor_value", best_monitor_value)),
+                },
+                step=int(best_payload.get("epoch", best_epoch)),
+            )
+
+    if wandb_run is not None:
+        wandb_run.finish()
 
     return {
         "fold": fold,
@@ -594,13 +814,16 @@ def evaluate_fold(
     device: torch.device,
     use_amp: bool,
     class_weights: torch.Tensor,
-) -> tuple[float, float]:
+    val_records: None,
+) -> tuple[float, float, dict[str, float]]:
     model.eval()
     scores: list[float] = []
     losses: list[float] = []
-    for batch in tqdm(loader, desc="Validation", leave=False):
-        image = batch["image"].numpy()[0]
-        mask = batch["mask"].numpy()[0]
+    size_scores:   dict[str, list[float]] = {"empty": [], "tiny": [], "small": [], "large": []}
+    for batch_idx, batch in enumerate(tqdm(loader, desc="Validation", leave=False)):
+        image = batch["image"].numpy()[0]   # (C, D, H, W)
+        mask  = batch["mask"].numpy()[0]    # (D, H, W)
+ 
         logits = predict_logits(
             model=model,
             image=image,
@@ -610,13 +833,45 @@ def evaluate_fold(
             device=device,
             use_amp=use_amp,
         )
+ 
         logits_tensor = torch.from_numpy(logits).unsqueeze(0).to(device=device, dtype=torch.float32)
-        mask_tensor = torch.from_numpy(mask.copy()).unsqueeze(0).to(device=device, dtype=torch.long)
+        mask_tensor   = torch.from_numpy(mask.copy()).unsqueeze(0).to(device=device, dtype=torch.long)
         loss = dice_ce_loss(logits_tensor, mask_tensor, class_weights=class_weights)
         losses.append(float(loss.detach().cpu()))
+ 
         prediction = np.argmax(logits, axis=0).astype(np.uint8)
-        scores.append(dice_score(prediction, mask))
-    return (float(np.mean(losses)) if losses else 0.0, float(np.mean(scores)) if scores else 0.0)
+        score = dice_score(prediction, mask)
+        scores.append(score)
+ 
+        # per-size bucketing
+        if val_records is not None and batch_idx < len(val_records):
+            record = val_records[batch_idx]
+            # derive size from voxel count directly (no dependency on cached labels)
+            lesion_voxels = int(np.count_nonzero(mask > 0))
+            if lesion_voxels == 0:
+                size = "empty"
+            else:
+                # rough thresholds matching make_stratification_labels
+                if lesion_voxels < 500:
+                    size = "tiny"
+                elif lesion_voxels < 10_000:
+                    size = "small"
+                else:
+                    size = "large"
+            size_scores[size].append(score)
+ 
+    mean_loss  = float(np.mean(losses)) if losses else 0.0
+    mean_dice  = float(np.mean(scores)) if scores else 0.0
+    per_size   = {
+        size: float(np.mean(vals)) if vals else float("nan")
+        for size, vals in size_scores.items()
+    }
+    per_size["n_empty"] = float(len(size_scores["empty"]))
+    per_size["n_tiny"]  = float(len(size_scores["tiny"]))
+    per_size["n_small"] = float(len(size_scores["small"]))
+    per_size["n_large"] = float(len(size_scores["large"]))
+ 
+    return mean_loss, mean_dice, per_size
 
 
 def train_from_config(

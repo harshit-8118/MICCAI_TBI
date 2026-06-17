@@ -6,3 +6,5 @@ nibabel>=5.2
 torch>=2.2
 dynamic-network-architectures>=0.4.1
 nnunetv2>=2.5
+matplotlib>=3.8
+wandb>=0.17

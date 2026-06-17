@@ -28,6 +28,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-final-validation", action="store_true", help="Skip the final end-of-training validation.")
     parser.add_argument("--best-checkpoint-metric", type=str, default=None, help="Metric used to select the best checkpoint.")
     parser.add_argument("--best-checkpoint-mode", type=str, choices=["max", "min"], default=None, help="Whether the best checkpoint metric should be maximized or minimized.")
+    parser.add_argument("--positive-fraction", type=float, default=None, help="Target positive-lesion fraction for weighted case sampling.")
+    parser.add_argument("--enable-case-sampling", action="store_true", help="Enable weighted case sampling.")
+    parser.add_argument("--disable-case-sampling", action="store_true", help="Disable weighted case sampling.")
+    parser.add_argument("--wandb", action="store_true", help="Enable Weights & Biases logging.")
+    parser.add_argument("--no-wandb", action="store_true", help="Disable Weights & Biases logging.")
+    parser.add_argument("--wandb-project", type=str, default=None, help="W&B project name.")
+    parser.add_argument("--wandb-entity", type=str, default=None, help="W&B entity or team.")
+    parser.add_argument("--wandb-name", type=str, default=None, help="W&B run name.")
+    parser.add_argument("--wandb-mode", type=str, default=None, help="W&B mode: online, offline, or disabled.")
     return parser.parse_args()
 
 
@@ -67,7 +76,22 @@ def main() -> None:
         overrides.setdefault("training", {})["best_checkpoint_metric"] = args.best_checkpoint_metric
     if args.best_checkpoint_mode is not None:
         overrides.setdefault("training", {})["best_checkpoint_mode"] = args.best_checkpoint_mode
+    if args.positive_fraction is not None:
+        overrides.setdefault("training", {}).setdefault("case_sampling", {})["positive_fraction"] = args.positive_fraction
+    if args.enable_case_sampling or args.disable_case_sampling:
+        overrides.setdefault("training", {}).setdefault("case_sampling", {})["enabled"] = bool(args.enable_case_sampling and not args.disable_case_sampling)
+    if args.wandb or args.no_wandb:
+        overrides.setdefault("wandb", {})["enabled"] = bool(args.wandb and not args.no_wandb)
+    if args.wandb_project is not None:
+        overrides.setdefault("wandb", {})["project"] = args.wandb_project
+    if args.wandb_entity is not None:
+        overrides.setdefault("wandb", {})["entity"] = args.wandb_entity
+    if args.wandb_name is not None:
+        overrides.setdefault("wandb", {})["name"] = args.wandb_name
+    if args.wandb_mode is not None:
+        overrides.setdefault("wandb", {})["mode"] = args.wandb_mode
 
+    # print(args)
     results = train_from_config(args.config, fold=args.fold, all_folds=args.all_folds, overrides=overrides or None)
     for item in results:
         print(item)
@@ -75,8 +99,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-
-# python3 train.py --config config.yml --fold 0 --validation-interval 10
-# python3 validate.py --config config.yml --fold 0

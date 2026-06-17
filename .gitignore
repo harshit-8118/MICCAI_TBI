@@ -5,3 +5,9 @@
 MICCAI_AIMS_TBI
 MultiTalentV2_pretrained
 *.pyc
+wandb
+*.env
+utils.py
+aims_tbi_docker
+archive
+ensemble_out/

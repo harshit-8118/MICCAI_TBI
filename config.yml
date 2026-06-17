@@ -17,12 +17,12 @@ data:
   allow_missing_modalities: true
   normalize_foreground_only: true
   cache_preprocessed: true
-  oversample_foreground_prob: 0.33
+  oversample_foreground_prob: 0.66 # increased from 0.33
 
 model:
   in_channels: 1
   out_channels: 2
-  deep_supervision: false
+  deep_supervision: false # keep it false anyhow, 
   load_pretrained: true
   strict_load: false
   skip_pretrained_name_patterns: ["seg", "final", "classifier", "output"]
@@ -30,11 +30,11 @@ model:
 training:
   seed: 42
   num_folds: 5
-  fold: 0
-  batch_size: 1
-  num_workers: 8
+  fold: 1
+  batch_size: 1 # 1 or 2
+  num_workers: 16
   prefetch_factor: 4
-  max_epochs: 150
+  max_epochs: 200
   base_lr: 0.001
   weight_decay: 0.00001
   poly_power: 0.9
@@ -42,31 +42,54 @@ training:
   use_amp: true
   optimizer: "adamw"
   loss: "dice_ce"
-  class_weights: [1.0, 1.0]
+  class_weights: [1.0, 2.0]
   metric_threshold: 0.5
-  grad_clip_norm: 12.0
+  grad_clip_norm: 8.0
   save_every_epoch: false
-  validation_interval_epochs: 0
-  final_validation: true
-  best_checkpoint_metric: "train_dice"
+  validation_interval_epochs: 1
+  final_validation: false
+  best_checkpoint_metric: "val_dice"
   best_checkpoint_mode: "max"
+  min_lr: 0.00000001
+  head_warmup_epochs: 10
+  partial_warmup_epochs: 5
+  full_warmup_epochs: 10
+  case_sampling:
+    enabled: true
+    positive_fraction: 0.65
+    epoch_length_multiplier: 1.0
+    size_weights:
+      empty: 1.0
+      tiny:  3.0
+      small: 2.0
+      large: 1.5
+    replacement: true
   staged_tuning:
     enabled: true
-    head_only_epochs: 20
-    partial_tune_epochs: 50
+    head_only_epochs: 0
+    partial_tune_epochs: 0
     head_lr: 0.001
-    partial_lr: 0.0003
+    partial_lr: 0.0003 
     full_lr: 0.0001
-    head_patterns: ["seg", "final", "classifier", "output"]
-    partial_patterns: ["decoder", "up", "localization", "stages.4", "stages.5", "stages.6"]
+    head_patterns: ["seg_layers", "seg", "final", "classifier", "output"]
+    partial_patterns: ["decoder", "transpconvs", "seg_layers"]
+
+wandb:
+  enabled: true
+  project: "AIMS-TBI-MultiTalentV2"
+  entity: "da25s003-indian-institute-of-technology-madras"
+  name: null
+  mode: "online"
+  tags: ["multitalentv2", "tbi", "fold"]
+  notes: ""
 
 inference:
   roi_size: [192, 192, 192]
   overlap: 0.5
-  sw_batch_size: 1
+  sw_batch_size: 2
   use_amp: true
 
 ensemble:
-  enabled: true
+  enabled: false
   checkpoint_glob: "checkpoints/tbi_multitalentv2/fold_*/best.pt"
   output_name: "ensemble"

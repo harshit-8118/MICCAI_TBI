@@ -1,0 +1,13 @@
+Run log for fold 1
+Device: cuda
+AMP enabled: True
+Staged tuning: True
+Validation interval epochs: 10
+Final validation: True
+Best checkpoint metric: train_dice (max)
+Output dir: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_1
+Dataset summary: total=552, lesion_positive=322, lesion_empty=230, dmri=229
+Train split summary: total=441, lesion_positive=256, lesion_empty=185, dmri=183
+Val split summary: total=111, lesion_positive=66, lesion_empty=45, dmri=46
+Case sampling: enabled=False, target_positive_fraction=nan, target_empty_fraction=nan, positive_weight=nan, empty_weight=nan, num_samples=441, replacement=True
+phase	epoch	stage	train_loss	train_dice	val_loss	val_dice	monitor_metric	monitor_value	lr_head	lr_partial	lr_full
