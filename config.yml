@@ -17,7 +17,7 @@ data:
   allow_missing_modalities: true
   normalize_foreground_only: true
   cache_preprocessed: true
-  oversample_foreground_prob: 0.66 # increased from 0.33
+  oversample_foreground_prob: 0.80 # increased from 0.33
 
 model:
   in_channels: 1
@@ -34,7 +34,7 @@ training:
   batch_size: 1 # 1 or 2
   num_workers: 16
   prefetch_factor: 4
-  max_epochs: 200
+  max_epochs: 50
   base_lr: 0.001
   weight_decay: 0.00001
   poly_power: 0.9
@@ -53,9 +53,9 @@ training:
   min_lr: 0.00000001
   head_warmup_epochs: 10
   partial_warmup_epochs: 5
-  full_warmup_epochs: 10
+  full_warmup_epochs: 2
   case_sampling:
-    enabled: true
+    enabled: false
     positive_fraction: 0.65
     epoch_length_multiplier: 1.0
     size_weights:
@@ -70,17 +70,40 @@ training:
     partial_tune_epochs: 0
     head_lr: 0.001
     partial_lr: 0.0003 
-    full_lr: 0.0001
+    full_lr: 0.00001
     head_patterns: ["seg_layers", "seg", "final", "classifier", "output"]
     partial_patterns: ["decoder", "transpconvs", "seg_layers"]
 
+segmenter_a:
+  # Lesion-positive-focused second strategy.
+  # Outputs go to: checkpoints/tbi_multitalentv2/segmenter_a/fold_X
+  output_subdir: "segmenter_a"
+  init_checkpoint: "checkpoints/trained_models/best_tr_f1_kpcyjb66.pt"
+  filters_dir: "checkpoints/tbi_multitalentv2/case_filters"
+  train_min_lesion_voxels: 1  # Use 1 for max sensitivity, 51 if very tiny masks look noisy
+  val_min_lesion_voxels: 1
+  selection_min_lesion_voxels: 50
+  selection_metric: "dice_gt_over_selection_min"
+  probability_threshold: 0.5  # Lower like 0.35–0.45 increases recall, higher like 0.55–0.65 reduces false positives
+  min_component_voxels: 0   # Try 0, 5, 10, 25; be careful above 25 because true tiny lesions can die.
+  epoch_length_multiplier: 1.0
+  size_weights:
+    very_tiny: 6.0
+    tiny: 4.0
+    small: 2.5
+    large: 1.5
+    empty: 1.0
+  hard_negative:
+    enabled: false
+    empty_fraction: 0.0
+
 wandb:
   enabled: true
-  project: "AIMS-TBI-MultiTalentV2"
+  project: "AIMS-TBI-MultiTalentV3" # Version3 is two stage training.
   entity: "da25s003-indian-institute-of-technology-madras"
   name: null
   mode: "online"
-  tags: ["multitalentv2", "tbi", "fold"]
+  tags: ["multitalentv2", "tbi", "fold", "lesion_focussed", "2stage"]
   notes: ""
 
 inference:
@@ -90,6 +113,14 @@ inference:
   use_amp: true
 
 ensemble:
-  enabled: false
-  checkpoint_glob: "checkpoints/tbi_multitalentv2/fold_*/best.pt"
-  output_name: "ensemble"
+  enabled: true
+  output_name: "ensemble3_tta_f1_2"
+  threshold: 0.10
+  min_component_voxels: 0
+  tta: "flips"
+  load_mode: "preload"
+  checkpoints:
+    - "checkpoints/trained_models/best_tr_f1_kpcyjb66.pt"
+    - "checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_tiny.pt"
+    - "checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_gt50.pt"
+    - "checkpoints/trained_models/best_714109.pt"

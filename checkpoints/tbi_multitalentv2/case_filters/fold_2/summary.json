@@ -1,0 +1,10 @@
+{
+  "fold": 2,
+  "output_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/case_filters/fold_2",
+  "train_total": 442,
+  "train_positive": 257,
+  "train_empty": 185,
+  "val_total": 110,
+  "val_positive": 65,
+  "val_empty": 45
+}

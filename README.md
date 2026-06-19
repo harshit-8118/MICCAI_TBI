@@ -54,3 +54,5 @@ flowchart TD
     N1 --> O["Goal<br/>Better lesion-only Dice<br/>especially tiny/small lesions"]
     N2 --> P["Goal<br/>Better empty/lesion classification"]
 ```
+
+python3 inference_sweep.py   --config config.yml   --fold 1   --split val   --positive-only   --load-mode preload   --checkpoints     checkpoints/trained_models/best_tr_f1_kpcyjb66.pt     checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_tiny.pt     checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_gt50.pt checkpoints/trained_models/best_714109.pt  --thresholds 0.10 0.15 0.20 0.25   --min-components 0 3 5   --output-dir checkpoints/tbi_multitalentv2/inference_sweeps/fast_ensemble_f1
