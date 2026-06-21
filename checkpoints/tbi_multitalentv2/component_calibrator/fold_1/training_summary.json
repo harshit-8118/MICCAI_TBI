@@ -1,0 +1,18 @@
+{
+  "fold": 1,
+  "split": "train",
+  "cases": 441,
+  "components": 2165,
+  "positive_components": 954,
+  "negative_components": 1211,
+  "checkpoints": [
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/trained_models/best_tr_f1_kpcyjb66.pt",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/trained_models/best_gt50.pt",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/trained_models/best_tiny.pt",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/trained_models/best_714109.pt"
+  ],
+  "tta": "flips",
+  "load_mode": "preload",
+  "positive_weight": 8.0,
+  "n_estimators": 500
+}

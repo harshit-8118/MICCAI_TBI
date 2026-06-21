@@ -59,6 +59,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--probability-threshold", type=float, default=None, help="Lesion probability threshold.")
     parser.add_argument("--min-component-voxels", type=int, default=None, help="Remove predicted components smaller than this.")
     parser.add_argument("--include-empty-fraction", type=float, default=None, help="Optional empty case fraction for hard-negative phase.")
+    parser.add_argument("--hard-negative-manifest", default=None, help="CSV from mine_hard_negatives.py with FP patch centers.")
+    parser.add_argument("--hard-negative-center-prob", type=float, default=None, help="Probability of sampling a mined FP center for empty cases.")
+    parser.add_argument("--hard-negative-max-centers-per-case", type=int, default=None, help="Limit mined FP centers loaded per empty case.")
     parser.add_argument("--wandb-name", default=None, help="Override W&B run name.")
     parser.add_argument("--no-wandb", action="store_true", help="Disable W&B for this run.")
     return parser.parse_args()
@@ -97,6 +100,13 @@ def _build_overrides(args: argparse.Namespace) -> dict[str, object]:
     if args.include_empty_fraction is not None:
         overrides.setdefault("segmenter_a", {}).setdefault("hard_negative", {})["empty_fraction"] = args.include_empty_fraction
         overrides.setdefault("segmenter_a", {}).setdefault("hard_negative", {})["enabled"] = args.include_empty_fraction > 0
+    if args.hard_negative_manifest is not None:
+        overrides.setdefault("segmenter_a", {}).setdefault("hard_negative", {})["manifest_path"] = args.hard_negative_manifest
+        overrides.setdefault("segmenter_a", {}).setdefault("hard_negative", {})["enabled"] = True
+    if args.hard_negative_center_prob is not None:
+        overrides.setdefault("segmenter_a", {}).setdefault("hard_negative", {})["center_sampling_prob"] = args.hard_negative_center_prob
+    if args.hard_negative_max_centers_per_case is not None:
+        overrides.setdefault("segmenter_a", {}).setdefault("hard_negative", {})["max_centers_per_case"] = args.hard_negative_max_centers_per_case
     if args.no_wandb:
         overrides.setdefault("wandb", {})["enabled"] = False
     if args.wandb_name is not None:
@@ -137,6 +147,33 @@ def _build_sampler(infos: list[CaseInfo], segmenter_cfg, seed: int) -> WeightedR
         replacement=True,
         generator=torch.Generator().manual_seed(seed),
     )
+
+
+def _load_hard_negative_centers(
+    manifest_path: Path,
+    max_centers_per_case: int = 0,
+) -> dict[str, list[tuple[int, int, int]]]:
+    centers: dict[str, list[tuple[int, int, int]]] = {}
+    if not manifest_path.exists():
+        print(f"[WARN] Hard-negative manifest not found: {manifest_path}")
+        return centers
+
+    with manifest_path.open("r", newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            try:
+                case_id = str(row["case_id"])
+                center = (
+                    int(float(row["center_i"])),
+                    int(float(row["center_j"])),
+                    int(float(row["center_k"])),
+                )
+            except (KeyError, TypeError, ValueError) as error:
+                raise ValueError(f"Invalid hard-negative row in {manifest_path}: {row}") from error
+            bucket = centers.setdefault(case_id, [])
+            if max_centers_per_case <= 0 or len(bucket) < max_centers_per_case:
+                bucket.append(center)
+    return centers
 
 
 def _filter_components(mask: np.ndarray, min_component_voxels: int) -> np.ndarray:
@@ -334,11 +371,11 @@ def _init_wandb(config, output_dir: Path, fold: int, train_infos: list[CaseInfo]
         return None
     run_name = getattr(wandb_config, "name", None) or f"segmenter_a_fold_{fold}"
     run = wandb.init(
-        project=getattr(wandb_config, "project", "AIMS-TBI-MultiTalentV3"),
+        project=getattr(wandb_config, "project", "AIMS-TBI-MultiTalentV2"),
         entity=getattr(wandb_config, "entity", None),
         name=run_name,
         dir=str(output_dir / "wandb"),
-        mode=str(getattr(wandb_config, "mode", "online")),
+        mode=str(getattr(wandb_config, "mode", "offline")),
         tags=list(getattr(wandb_config, "tags", []) or []) + ["segmenter-a", "lesion-positive"],
         config=json.loads(json.dumps(config, default=lambda value: getattr(value, "__dict__", str(value)))),
         reinit=True,
@@ -379,7 +416,32 @@ def main() -> None:
     hard_negative_cfg = _namespace_get(segmenter_cfg, "hard_negative", SimpleNamespace())
     include_empty = bool(_namespace_get(hard_negative_cfg, "enabled", False))
     empty_fraction = float(_namespace_get(hard_negative_cfg, "empty_fraction", 0.0)) if include_empty else 0.0
-    selected_empty = _select_empty_subset(empty_infos(train_all_infos), len(train_positive), empty_fraction, seed)
+
+    hard_negative_centers: dict[str, list[tuple[int, int, int]]] = {}
+    hard_negative_manifest = str(_namespace_get(hard_negative_cfg, "manifest_path", "") or "")
+    if include_empty and hard_negative_manifest:
+        hard_negative_centers = _load_hard_negative_centers(
+            resolve_path(base_dir, hard_negative_manifest),
+            max_centers_per_case=int(_namespace_get(hard_negative_cfg, "max_centers_per_case", 0)),
+        )
+
+    all_empty_infos = empty_infos(train_all_infos)
+    hard_negative_empty_infos = [
+        info for info in all_empty_infos if info.record.case_id in hard_negative_centers
+    ]
+    empty_pool = hard_negative_empty_infos if hard_negative_empty_infos else all_empty_infos
+    selected_empty = _select_empty_subset(empty_pool, len(train_positive), empty_fraction, seed)
+    selected_empty_ids = {info.record.case_id for info in selected_empty}
+    hard_negative_centers = {
+        case_id: centers
+        for case_id, centers in hard_negative_centers.items()
+        if case_id in selected_empty_ids
+    }
+    hard_negative_center_prob = (
+        min(max(float(_namespace_get(hard_negative_cfg, "center_sampling_prob", 1.0)), 0.0), 1.0)
+        if hard_negative_centers
+        else 0.0
+    )
     train_infos = train_positive + selected_empty
 
     if not train_positive:
@@ -404,6 +466,8 @@ def main() -> None:
         oversample_foreground_prob=config.data.oversample_foreground_prob,
         training=True,
         cache_dir=resolve_path(base_dir, config.paths.cache_dir) if config.data.cache_preprocessed else None,
+        forced_patch_centers=hard_negative_centers,
+        forced_center_prob=hard_negative_center_prob,
     )
     val_dataset = TBIDataset(
         records=[info.record for info in val_positive],
@@ -485,6 +549,10 @@ def main() -> None:
         run_log.write(f"Init checkpoint: {init_checkpoint_path}\n")
         run_log.write(f"Train positive: {len(train_positive)}\n")
         run_log.write(f"Train selected empty: {len(selected_empty)}\n")
+        run_log.write(f"Hard-negative manifest: {hard_negative_manifest or 'none'}\n")
+        run_log.write(f"Hard-negative cases with centers: {len(hard_negative_centers)}\n")
+        run_log.write(f"Hard-negative centers loaded: {sum(len(v) for v in hard_negative_centers.values())}\n")
+        run_log.write(f"Hard-negative center sampling prob: {hard_negative_center_prob}\n")
         run_log.write(f"Val positive: {len(val_positive)}\n")
         run_log.write(f"Selection metric: {selection_metric}\n")
         run_log.write(f"Probability threshold: {_namespace_get(segmenter_cfg, 'probability_threshold', 0.5)}\n")

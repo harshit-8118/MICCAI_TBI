@@ -306,6 +306,8 @@ class TBIDataset(torch.utils.data.Dataset):
         oversample_foreground_prob: float,
         training: bool,
         cache_dir: str | Path | None = None,
+        forced_patch_centers: dict[str, list[tuple[int, int, int]]] | None = None,
+        forced_center_prob: float = 1.0,
     ) -> None:
         self.records = records
         self.patch_size = tuple(int(x) for x in patch_size)
@@ -317,6 +319,8 @@ class TBIDataset(torch.utils.data.Dataset):
         self.oversample_foreground_prob = float(oversample_foreground_prob)
         self.training = training
         self.cache_dir = cache_dir
+        self.forced_patch_centers = forced_patch_centers or {}
+        self.forced_center_prob = float(forced_center_prob)
 
     def __len__(self) -> int:
         return len(self.records)
@@ -334,7 +338,7 @@ class TBIDataset(torch.utils.data.Dataset):
         )
 
         if self.training:
-            image, mask = self._sample_patch(image, mask)
+            image, mask = self._sample_patch(image, mask, record.case_id)
             image, mask = self._augment(image, mask)
 
         return {
@@ -345,10 +349,18 @@ class TBIDataset(torch.utils.data.Dataset):
             "mask_affine": torch.from_numpy(np.asarray(mask_affine)),
         }
 
-    def _sample_patch(self, image: np.ndarray, mask: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    def _sample_patch(self, image: np.ndarray, mask: np.ndarray, case_id: str) -> tuple[np.ndarray, np.ndarray]:
         padded_image, pads = _pad_to_shape(image, self.patch_size, fill_value=0.0)
         padded_mask, _ = _pad_to_shape(mask, self.patch_size, fill_value=0)
-        center = _random_center(padded_mask, self.oversample_foreground_prob)
+        centers = self.forced_patch_centers.get(case_id, [])
+        if centers and random.random() < self.forced_center_prob:
+            raw_center = centers[random.randrange(len(centers))]
+            center = tuple(
+                max(0, min(int(raw_center[axis]) + pads[axis][0], padded_mask.shape[axis] - 1))
+                for axis in range(3)
+            )
+        else:
+            center = _random_center(padded_mask, self.oversample_foreground_prob)
         return _crop_with_center(padded_image, center, self.patch_size), _crop_with_center(padded_mask, center, self.patch_size)
 
     def _augment(self, image: np.ndarray, mask: np.ndarray) -> tuple[np.ndarray, np.ndarray]:

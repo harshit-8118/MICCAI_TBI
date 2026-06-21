@@ -6,3 +6,4 @@ checkpoints/tbi_multitalentv2/fold_0/validation_exports/previews
 *.png
 */previews/*
 */nifti/*
+checkpoints/tbi_multitalentv2/component_calibrator/fold_1/component_calibrator.joblib

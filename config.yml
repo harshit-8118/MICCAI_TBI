@@ -17,7 +17,7 @@ data:
   allow_missing_modalities: true
   normalize_foreground_only: true
   cache_preprocessed: true
-  oversample_foreground_prob: 0.80 # increased from 0.33
+  oversample_foreground_prob: 0.66 # increased from 0.33
 
 model:
   in_channels: 1
@@ -95,7 +95,10 @@ segmenter_a:
     empty: 1.0
   hard_negative:
     enabled: false
-    empty_fraction: 0.0
+    empty_fraction: 0.15
+    manifest_path: "checkpoints/tbi_multitalentv2/hard_negatives/fold_1/train_empty_fp_components.csv"
+    center_sampling_prob: 0.85
+    max_centers_per_case: 8
 
 wandb:
   enabled: true

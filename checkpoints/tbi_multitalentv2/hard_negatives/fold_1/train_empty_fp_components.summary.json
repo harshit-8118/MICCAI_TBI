@@ -1,0 +1,18 @@
+{
+  "fold": 1,
+  "split": "train",
+  "empty_cases": 185,
+  "cases_with_fp": 94,
+  "components_saved": 236,
+  "threshold": 0.1,
+  "min_component_voxels": 3,
+  "max_components_per_case": 8,
+  "load_mode": "preload",
+  "checkpoints": [
+    "best_tr_f1_kpcyjb66.pt",
+    "best_gt50.pt",
+    "best_tiny.pt",
+    "best_714109.pt"
+  ],
+  "output_csv": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/hard_negatives/fold_1/train_empty_fp_components.csv"
+}

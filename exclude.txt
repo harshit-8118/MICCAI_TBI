@@ -1,5 +1,7 @@
-checkpoints
 MICCAI_AIMS_TBI
-aims_tbi_docker
-MultiTalentV2_pretrained
 wandb 
+checkpoints/tbi_multitalentv2/segmenter_a_hardneg
+checkpoints/tbi_multitalentv2/segmenter_a
+checkpoints/cache
+MultiTalentV2_pretrained
+checkpoints/trained_models/not_good
