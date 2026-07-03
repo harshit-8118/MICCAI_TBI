@@ -60,7 +60,22 @@ def build_splits(
 def load_splits(path: str | Path) -> list[dict[str, list[str]]]:
     with Path(path).open("r", encoding="utf-8") as handle:
         payload = json.load(handle)
-    return payload["splits"]
+    splits = payload.get("splits", payload.get("folds"))
+    if splits is None:
+        raise KeyError(f"Missing 'splits' or 'folds' key in {path}.")
+    test_ids = set(str(case_id) for case_id in payload.get("test", []))
+    for index, split in enumerate(splits):
+        if "train" not in split or "val" not in split:
+            raise KeyError(f"Split {index} in {path} must contain 'train' and 'val' keys.")
+        if test_ids:
+            train_overlap = test_ids & set(str(case_id) for case_id in split["train"])
+            val_overlap = test_ids & set(str(case_id) for case_id in split["val"])
+            if train_overlap or val_overlap:
+                raise ValueError(
+                    f"Split {index} leaks fixed test IDs into train/val. "
+                    f"train_overlap={sorted(train_overlap)[:10]}, val_overlap={sorted(val_overlap)[:10]}"
+                )
+    return splits
 
 
 def split_records(records: list[CaseRecord], split: dict[str, list[str]]) -> tuple[list[CaseRecord], list[CaseRecord]]:

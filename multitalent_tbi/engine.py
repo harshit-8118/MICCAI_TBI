@@ -885,6 +885,13 @@ def train_from_config(
     base_dir = Path(config_path).expanduser().resolve().parent
     splits_file = resolve_path(base_dir, config.paths.splits_file)
     if not Path(splits_file).exists():
+        split_name = Path(splits_file).name.lower()
+        if "train_val_test" in split_name or "test" in split_name:
+            raise FileNotFoundError(
+                f"Configured split file does not exist: {splits_file}. "
+                "This filename looks like a fixed train/val/test split, so it will not be auto-created. "
+                "Create/copy the intended split JSON first, or pass --splits-file to train.py."
+            )
         from .splits import build_splits
 
         build_splits(

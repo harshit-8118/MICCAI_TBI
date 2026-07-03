@@ -11,6 +11,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--fold", type=int, default=None, help="Fold index to train.")
     parser.add_argument("--all-folds", action="store_true", help="Train all folds sequentially.")
     parser.add_argument("--epochs", type=int, default=None, help="Override total training epochs.")
+    parser.add_argument("--splits-file", type=str, default=None, help="Override splits JSON file path.")
     parser.add_argument("--base-lr", type=float, default=None, help="Override the base learning rate.")
     parser.add_argument("--batch-size", type=int, default=None, help="Override batch size.")
     parser.add_argument("--num-workers", type=int, default=None, help="Override dataloader workers.")
@@ -45,6 +46,8 @@ def main() -> None:
     overrides: dict[str, object] = {}
     if args.epochs is not None:
         overrides.setdefault("training", {})["max_epochs"] = args.epochs
+    if args.splits_file is not None:
+        overrides.setdefault("paths", {})["splits_file"] = args.splits_file
     if args.base_lr is not None:
         overrides.setdefault("training", {})["base_lr"] = args.base_lr
     if args.batch_size is not None:

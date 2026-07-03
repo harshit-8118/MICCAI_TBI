@@ -130,39 +130,118 @@ python3 component_calibrator_sweep.py \
 Decision rule: keep the calibrator only if positive Dice stays near the 4-model
 baseline while empty false positives drop clearly.
 
+## Preprocessing lesion-visibility QA
 
-```mermaid
-flowchart TD
-    A["Training Data<br/>T1 MRI + Lesion Masks"] --> B1["Lesion-Positive Cases"]
-    A --> B2["Empty Cases<br/>Held Aside"]
+Use this before committing to a new preprocessing strategy. It compares the same
+GT lesion region before/after intensity preprocessing and writes lesion-centric
+figures plus a CSV with lesion-vs-local-ring contrast/CNR.
 
-    B1 --> C["Segmenter A<br/>MultiTalentV2 Fine-Tuning<br/>Lesion-Only Training"]
-    C --> D["Tiny-Lesion Focus<br/>Heavy tiny oversampling<br/>Foreground patch sampling<br/>Lesion-sensitive loss"]
-
-    D --> E["Run Segmenter A<br/>on Empty MRIs"]
-    B2 --> E
-
-    E --> F["Hard Negatives<br/>False-positive patches<br/>Artifacts, CSF edges, metal clips,<br/>WM shadows, brain edge errors"]
-
-    F --> G["Hard-Negative Fine-Tuning<br/>Mostly lesion-positive batches<br/>+ 10-20% empty/hard-negative patches"]
-
-    G --> H["3-5 Fold / Seed Models<br/>Selected by lesion-only Dice<br/>not all-case Dice"]
-
-    H --> I["Inference Ensemble<br/>Sequential load/unload<br/>T4 16GB safe"]
-
-    I --> J["TTA<br/>Original + X/Y/Z flips<br/>Average probabilities after unflip"]
-
-    J --> K["Candidate Components<br/>Connected components from<br/>ensemble probability mask"]
-
-    K --> L["Component Features<br/>Size, mean/max probability<br/>model votes, entropy<br/>TTA stability, intensity contrast<br/>location priors"]
-
-    L --> M["Second-Stage Calibrator<br/>Keep/reject each component"]
-
-    M --> N1["Segmentation Submission<br/>High recall<br/>remove only obvious junk"]
-    M --> N2["Detection Submission<br/>Stricter empty-vs-lesion decision"]
-
-    N1 --> O["Goal<br/>Better lesion-only Dice<br/>especially tiny/small lesions"]
-    N2 --> P["Goal<br/>Better empty/lesion classification"]
+```bash
+python3 compare_preprocessing_lesions.py \
+  --config config.yml \
+  --fold 1 \
+  --split val \
+  --categories very_tiny tiny \
+  --max-cases 12 \
+  --methods raw_zscore clip_1_99_zscore clip_0_5_99_5_zscore clip_2_98_zscore \
+  --output-dir checkpoints/tbi_multitalentv2/preprocessing_qa/fold_1_tiny_clip_compare
 ```
 
-python3 inference_sweep.py   --config config.yml   --fold 1   --split val   --positive-only   --load-mode preload   --checkpoints     checkpoints/trained_models/best_tr_f1_kpcyjb66.pt     checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_tiny.pt     checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_gt50.pt checkpoints/trained_models/best_714109.pt  --thresholds 0.10 0.15 0.20 0.25   --min-components 0 3 5   --output-dir checkpoints/tbi_multitalentv2/inference_sweeps/fast_ensemble_f1
+For specific scans:
+
+```bash
+python3 compare_preprocessing_lesions.py \
+  --config config.yml \
+  --fold 1 \
+  --split val \
+  --case-ids 0071 0384 0778 1015 \
+  --methods raw_zscore clip_1_99_zscore \
+  --output-dir checkpoints/tbi_multitalentv2/preprocessing_qa/challenge_like_cases
+```
+
+## Clean hierarchical train/val/test splits
+
+Create one fixed 30-case test set and five stratified 80/20 train/val folds over
+the remaining cases. Run this on the lab machine where `MICCAI_AIMS_TBI` is
+available.
+
+```bash
+python3 create_hierarchical_clean_splits.py \
+  --config config.yml \
+  --seed 42 \
+  --num-folds 5 \
+  --test-empty 10 \
+  --test-very-tiny 2 \
+  --test-tiny 4 \
+  --test-small 10 \
+  --test-large 4 \
+  --output-json checkpoints/tbi_hierarchical_clean/splits/train_val_test_5fold_seed42.json
+```
+
+Dry-run the micro-lesion branch before training:
+
+```bash
+python3 train_hierarchical_segmenter.py \
+  --config config.yml \
+  --branch micro128 \
+  --fold 0 \
+  --dry-run
+```
+
+The dry-run writes/prints component-aware virtual sample counts. For `micro128`,
+each lesion component becomes one or more possible patch centers, while empty and
+context samples stay available for false-positive control. The virtual samples are
+a candidate pool; one epoch samples about `train_cases × epoch_length_multiplier`,
+not every virtual sample.
+
+Train the first clean micro/tiny specialist:
+
+```bash
+python3 train_hierarchical_segmenter.py \
+  --config config.yml \
+  --branch micro128 \
+  --fold 0 \
+  --wandb-name clean-micro128-f0
+```
+
+Outputs:
+
+```text
+checkpoints/tbi_hierarchical_clean/micro128/fold_0/last.pt
+checkpoints/tbi_hierarchical_clean/micro128/fold_0/best_primary.pt
+checkpoints/tbi_hierarchical_clean/micro128/fold_0/best_balanced.pt
+checkpoints/tbi_hierarchical_clean/micro128/fold_0/history.csv
+```
+
+Evaluate one trained branch on the fixed 30-case hold-out test set:
+
+```bash
+python3 evaluate_hierarchical_test.py \
+  --config config.yml \
+  --branch micro128 \
+  --checkpoints checkpoints/tbi_hierarchical_clean/micro128/fold_0/best_primary.pt \
+  --thresholds 0.30 0.40 0.50 \
+  --min-components 0 3 5 \
+  --tta none \
+  --output-dir checkpoints/tbi_hierarchical_clean/test_evaluations/micro128_f0
+```
+
+Evaluate a fold ensemble on the same fixed test set:
+
+```bash
+python3 evaluate_hierarchical_test.py \
+  --config config.yml \
+  --branch micro128 \
+  --checkpoints \
+    checkpoints/tbi_hierarchical_clean/micro128/fold_0/best_primary.pt \
+    checkpoints/tbi_hierarchical_clean/micro128/fold_1/best_primary.pt \
+    checkpoints/tbi_hierarchical_clean/micro128/fold_2/best_primary.pt \
+  --thresholds 0.30 0.40 0.50 \
+  --min-components 0 3 5 \
+  --tta flips \
+  --load-mode preload \
+  --output-dir checkpoints/tbi_hierarchical_clean/test_evaluations/micro128_f0_f1_f2_tta
+```
+
+The evaluator writes `summary.csv` plus per-case CSV files. Use the hold-out test
+only for final reporting, not repeated threshold chasing.

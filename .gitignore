@@ -4,6 +4,7 @@
 *.npz
 MICCAI_AIMS_TBI
 MultiTalentV2_pretrained
+Validation2025_100/
 *.pyc
 wandb
 *.env
@@ -11,3 +12,4 @@ utils.py
 aims_tbi_docker
 archive
 ensemble_out/
+checkpoints/
