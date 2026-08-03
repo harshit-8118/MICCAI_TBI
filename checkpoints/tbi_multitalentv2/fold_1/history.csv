@@ -1,2 +1,0 @@
-phase,epoch,train_loss,train_dice,val_loss,val_dice,monitor_metric,monitor_value,lr_head,lr_partial,lr_full
-train,1,1.5942358448150311,0.009512487712699021,1.2963952883234564,0.264151235217029,val_dice,0.264151235217029,0.0,0.0,5e-05

@@ -10,8 +10,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="config.yml", help="Path to the YAML config.")
     parser.add_argument("--fold", type=int, default=None, help="Fold index to train.")
     parser.add_argument("--all-folds", action="store_true", help="Train all folds sequentially.")
+    parser.add_argument("--splits-file", type=str, default=None, help="Override config paths.splits_file.")
+    parser.add_argument("--work-dir", type=str, default=None, help="Override config paths.work_dir. Use a new path to avoid overwriting older runs.")
     parser.add_argument("--epochs", type=int, default=None, help="Override total training epochs.")
-    parser.add_argument("--splits-file", type=str, default=None, help="Override splits JSON file path.")
     parser.add_argument("--base-lr", type=float, default=None, help="Override the base learning rate.")
     parser.add_argument("--batch-size", type=int, default=None, help="Override batch size.")
     parser.add_argument("--num-workers", type=int, default=None, help="Override dataloader workers.")
@@ -38,6 +39,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--wandb-entity", type=str, default=None, help="W&B entity or team.")
     parser.add_argument("--wandb-name", type=str, default=None, help="W&B run name.")
     parser.add_argument("--wandb-mode", type=str, default=None, help="W&B mode: online, offline, or disabled.")
+    parser.add_argument("--resume-checkpoint", type=str, default=None, help="Resume training state from last.pt or another training checkpoint.")
+    parser.add_argument("--init-checkpoint", type=str, default=None, help="Initialize model weights from a checkpoint but start a new optimizer/schedule.")
+    parser.add_argument("--allow-existing-output", action="store_true", help="Allow writing into an output fold directory that already has history/checkpoints.")
     return parser.parse_args()
 
 
@@ -48,6 +52,8 @@ def main() -> None:
         overrides.setdefault("training", {})["max_epochs"] = args.epochs
     if args.splits_file is not None:
         overrides.setdefault("paths", {})["splits_file"] = args.splits_file
+    if args.work_dir is not None:
+        overrides.setdefault("paths", {})["work_dir"] = args.work_dir
     if args.base_lr is not None:
         overrides.setdefault("training", {})["base_lr"] = args.base_lr
     if args.batch_size is not None:
@@ -93,6 +99,12 @@ def main() -> None:
         overrides.setdefault("wandb", {})["name"] = args.wandb_name
     if args.wandb_mode is not None:
         overrides.setdefault("wandb", {})["mode"] = args.wandb_mode
+    if args.resume_checkpoint is not None:
+        overrides.setdefault("training", {})["resume_checkpoint"] = args.resume_checkpoint
+    if args.init_checkpoint is not None:
+        overrides.setdefault("training", {})["init_checkpoint"] = args.init_checkpoint
+    if args.allow_existing_output:
+        overrides.setdefault("training", {})["allow_existing_output"] = True
 
     # print(args)
     results = train_from_config(args.config, fold=args.fold, all_folds=args.all_folds, overrides=overrides or None)
@@ -102,3 +114,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+# python train.py --config config.yml --init-checkpoint /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt --wandb-name resume_training_ddp_with128

@@ -10,6 +10,13 @@ from sklearn.model_selection import StratifiedKFold
 from .data import CaseRecord, discover_cases, make_stratification_labels
 
 
+ALL_CASES_TOKEN = "__all__"
+
+
+def _is_all_cases(case_ids: object) -> bool:
+    return isinstance(case_ids, str) and case_ids == ALL_CASES_TOKEN
+
+
 def _case_id_aliases(case_id: str) -> list[str]:
     aliases = {case_id}
     stripped = case_id.lstrip("0")
@@ -62,14 +69,16 @@ def load_splits(path: str | Path) -> list[dict[str, list[str]]]:
         payload = json.load(handle)
     splits = payload.get("splits", payload.get("folds"))
     if splits is None:
-        raise KeyError(f"Missing 'splits' or 'folds' key in {path}.")
+        raise KeyError(f"Split file {path} must contain either a 'splits' key or a 'folds' key.")
     test_ids = set(str(case_id) for case_id in payload.get("test", []))
     for index, split in enumerate(splits):
         if "train" not in split or "val" not in split:
             raise KeyError(f"Split {index} in {path} must contain 'train' and 'val' keys.")
         if test_ids:
-            train_overlap = test_ids & set(str(case_id) for case_id in split["train"])
-            val_overlap = test_ids & set(str(case_id) for case_id in split["val"])
+            train_ids = set() if _is_all_cases(split["train"]) else set(str(case_id) for case_id in split["train"])
+            val_ids = set() if _is_all_cases(split["val"]) else set(str(case_id) for case_id in split["val"])
+            train_overlap = test_ids & train_ids
+            val_overlap = test_ids & val_ids
             if train_overlap or val_overlap:
                 raise ValueError(
                     f"Split {index} leaks fixed test IDs into train/val. "
@@ -84,7 +93,9 @@ def split_records(records: list[CaseRecord], split: dict[str, list[str]]) -> tup
         for alias in _case_id_aliases(record.case_id):
             mapping.setdefault(alias, record)
 
-    def resolve(case_ids: Iterable[str]) -> list[CaseRecord]:
+    def resolve(case_ids: Iterable[str] | str) -> list[CaseRecord]:
+        if _is_all_cases(case_ids):
+            return list(records)
         resolved: list[CaseRecord] = []
         missing: list[str] = []
         for case_id in case_ids:

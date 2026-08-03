@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import shutil
+import hashlib
 import json
 import math
 import random
@@ -72,9 +73,14 @@ def discover_cases(dataset_dir: str | Path) -> list[CaseRecord]:
     candidate_files = [path for path in dataset_dir.iterdir() if path.is_file() and path.name.lower().startswith("scan_")]
     for t1_path in sorted(candidate_files):
         lower_name = t1_path.name.lower()
-        if "_t1" not in lower_name:
+        if any(token in lower_name for token in ["_lesion", "_dmri", "_bval", "_bvec"]):
             continue
-        case_id = _scan_id_from_name(t1_path.name)
+        if "_t1" not in lower_name:
+            case_id = _scan_id_from_name(t1_path.name)
+            if _find_existing_file(dataset_dir, case_id, "_Lesion") is None:
+                continue
+        else:
+            case_id = _scan_id_from_name(t1_path.name)
         lesion_path = _find_existing_file(dataset_dir, case_id, "_Lesion")
         if lesion_path is None:
             continue
@@ -268,7 +274,10 @@ def load_case_cached(
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     cache_path = None
     if cache_dir is not None:
-        cache_path = Path(cache_dir) / f"{case.case_id}_c{int(include_dmri)}_{'_'.join(str(x) for x in target_spacing)}.npz"
+        source_key = hashlib.sha1(
+            f"{case.t1_path.resolve()}|{case.lesion_path.resolve()}".encode("utf-8")
+        ).hexdigest()[:10]
+        cache_path = Path(cache_dir) / f"{case.case_id}_{source_key}_c{int(include_dmri)}_{'_'.join(str(x) for x in target_spacing)}.npz"
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         if cache_path.exists():
             cached = np.load(cache_path, allow_pickle=False)

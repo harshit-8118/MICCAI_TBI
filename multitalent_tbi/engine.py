@@ -346,9 +346,19 @@ def _batch_dice(logits: torch.Tensor, targets: torch.Tensor) -> float:
 
 
 def load_case_records_for_fold(config, fold: int, base_dir: Path):
-    records = discover_cases(resolve_path(base_dir, config.paths.dataset_dir))
+    train_dataset_dir = resolve_path(base_dir, config.paths.dataset_dir)
     splits = load_splits(resolve_path(base_dir, config.paths.splits_file))
-    train_records, val_records = split_records(records, splits[fold])
+    split = splits[fold]
+    val_dataset_dir = split.get("val_dataset_dir")
+    train_dataset_dir_override = split.get("train_dataset_dir")
+
+    train_source_records = discover_cases(resolve_path(base_dir, train_dataset_dir_override) if train_dataset_dir_override else train_dataset_dir)
+    if val_dataset_dir:
+        val_source_records = discover_cases(resolve_path(base_dir, val_dataset_dir))
+        train_records, _ = split_records(train_source_records, {"train": split["train"], "val": []})
+        _, val_records = split_records(val_source_records, {"train": [], "val": split["val"]})
+    else:
+        train_records, val_records = split_records(train_source_records, split)
     return train_records, val_records
 
 
@@ -460,12 +470,69 @@ def build_model(config, base_dir: Path):
     return model.to(memory_format=torch.channels_last_3d)
 
 
+def _torch_load_checkpoint(path: Path, map_location):
+    try:
+        return torch.load(str(path), map_location=map_location, weights_only=False)
+    except TypeError:
+        return torch.load(str(path), map_location=map_location)
+
+
+def _extract_model_state(payload):
+    if isinstance(payload, dict):
+        for key in ("model_state", "state_dict", "model"):
+            value = payload.get(key)
+            if isinstance(value, dict):
+                return value
+    return payload
+
+
+def _load_model_checkpoint(model: torch.nn.Module, checkpoint_path: Path, strict: bool = False) -> dict[str, int]:
+    payload = _torch_load_checkpoint(checkpoint_path, map_location="cpu")
+    state = _extract_model_state(payload)
+    result = model.load_state_dict(state, strict=strict)
+    return {"missing": len(result.missing_keys), "unexpected": len(result.unexpected_keys)}
+
+
+def _active_lr_groups_for_epoch(scheduler: StagedPolyLRScheduler, optimizer: torch.optim.Optimizer, epoch: int) -> set[str]:
+    active: set[str] = set()
+    states = getattr(scheduler, "_states", {})
+    for group in optimizer.param_groups:
+        name = str(group.get("group_name", "full"))
+        state = states.get(name)
+        if state is None or state.is_active(epoch):
+            active.add(name)
+    return active
+
+
 def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
     set_seed(int(config.training.seed) + fold)
     configure_torch_for_speed()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     train_loader, val_loader, train_records, val_records, sampling_summary = build_dataloaders(config, fold, base_dir)
+    resume_checkpoint = getattr(config.training, "resume_checkpoint", None)
+    init_checkpoint = getattr(config.training, "init_checkpoint", None)
+    if resume_checkpoint and init_checkpoint:
+        raise ValueError("Use only one of training.resume_checkpoint or training.init_checkpoint.")
+
+    output_dir = resolve_path(base_dir, config.paths.work_dir) / f"fold_{fold}"
+    existing_outputs = [output_dir / name for name in ("history.csv", "last.pt", "best.pt")]
+    allow_existing_output = bool(getattr(config.training, "allow_existing_output", False))
+    if output_dir.exists() and any(path.exists() for path in existing_outputs) and not resume_checkpoint and not allow_existing_output:
+        raise FileExistsError(
+            f"Output directory already contains training artifacts: {output_dir}. "
+            "Use --work-dir for a new experiment, --resume-checkpoint to continue, "
+            "or --allow-existing-output if you intentionally want to write there."
+        )
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     model = build_model(config, base_dir).to(device)
+    if init_checkpoint:
+        init_path = resolve_path(base_dir, init_checkpoint)
+        load_info = _load_model_checkpoint(model, init_path, strict=False)
+        print(
+            f"Initialized model from checkpoint: {init_path} "
+            f"(missing={load_info['missing']}, unexpected={load_info['unexpected']})"
+        )
 
     staged = _get_staged_tuning(config)
     head_patterns = _normalize_patterns(getattr(staged, "head_patterns", None) if staged is not None else None, ["seg", "final", "classifier", "output"])
@@ -490,8 +557,6 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
     if best_checkpoint_metric not in {"train_dice", "val_dice", "train_loss", "val_loss"}:
         raise ValueError(f"Unsupported best_checkpoint_metric: {best_checkpoint_metric}")
 
-    output_dir = resolve_path(base_dir, config.paths.work_dir) / f"fold_{fold}"
-    output_dir.mkdir(parents=True, exist_ok=True)
     run_log_path = _next_run_log_path(output_dir)
     dataset_summary = _summarize_records(train_records + val_records)
     train_summary = _summarize_records(train_records)
@@ -502,24 +567,45 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
     best_path = output_dir / "best.pt"
     last_path = output_dir / "last.pt"
     history_path = output_dir / "history.csv"
+    start_epoch = 0
+    resume_path = resolve_path(base_dir, resume_checkpoint) if resume_checkpoint else None
+    if resume_path is not None:
+        resume_payload = _torch_load_checkpoint(resume_path, map_location=device)
+        model.load_state_dict(resume_payload["model_state"])
+        if "optimizer_state" in resume_payload:
+            optimizer.load_state_dict(resume_payload["optimizer_state"])
+        if "scaler_state" in resume_payload:
+            scaler.load_state_dict(resume_payload["scaler_state"])
+        start_epoch = int(resume_payload.get("epoch", 0))
+        if hasattr(scheduler, "_activated"):
+            scheduler._activated.update(_active_lr_groups_for_epoch(scheduler, optimizer, start_epoch))  # type: ignore[attr-defined]
+        if best_path.exists():
+            best_payload_for_resume = _torch_load_checkpoint(best_path, map_location="cpu")
+            best_monitor_value = float(best_payload_for_resume.get("monitor_value", best_monitor_value))
+            best_epoch = int(best_payload_for_resume.get("epoch", best_epoch))
+        elif math.isfinite(float(resume_payload.get("monitor_value", float("nan")))):
+            best_monitor_value = float(resume_payload.get("monitor_value"))
+            best_epoch = start_epoch
+        print(f"Resuming fold {fold} from {resume_path} at epoch {start_epoch}.")
 
-    with history_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.writer(handle)
-        writer.writerow(
-            [
-                "phase",
-                "epoch",
-                "train_loss",
-                "train_dice",
-                "val_loss",
-                "val_dice",
-                "monitor_metric",
-                "monitor_value",
-                "lr_head",
-                "lr_partial",
-                "lr_full",
-            ]
-        )
+    if not history_path.exists() or start_epoch == 0:
+        with history_path.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(
+                [
+                    "phase",
+                    "epoch",
+                    "train_loss",
+                    "train_dice",
+                    "val_loss",
+                    "val_dice",
+                    "monitor_metric",
+                    "monitor_value",
+                    "lr_head",
+                    "lr_partial",
+                    "lr_full",
+                ]
+            )
 
     with run_log_path.open("w", encoding="utf-8") as handle:
         handle.write(f"Run log for fold {fold}\n")
@@ -530,6 +616,9 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
         handle.write(f"Final validation: {final_validation}\n")
         handle.write(f"Best checkpoint metric: {best_checkpoint_metric} ({best_checkpoint_mode})\n")
         handle.write(f"Output dir: {output_dir}\n")
+        handle.write(f"Resume checkpoint: {resume_path or ''}\n")
+        handle.write(f"Init checkpoint: {resolve_path(base_dir, init_checkpoint) if init_checkpoint else ''}\n")
+        handle.write(f"Start epoch: {start_epoch}\n")
         handle.write(
             "Dataset summary: "
             f"total={dataset_summary['total']}, "
@@ -586,7 +675,7 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
             step=0,
         )
 
-    for epoch in range(int(config.training.max_epochs)):
+    for epoch in range(start_epoch, int(config.training.max_epochs)):
         stage = _stage_for_epoch(epoch, config)
         trainable_counts = _apply_stage_freezing(model, stage, head_patterns, partial_patterns)
         # lr_scale = _lr_scale_for_epoch(
@@ -716,6 +805,7 @@ def train_one_fold(config, fold: int, base_dir: Path) -> dict[str, float]:
             "epoch": epoch + 1,
             "model_state": model.state_dict(),
             "optimizer_state": optimizer.state_dict(),
+            "scaler_state": scaler.state_dict(),
             "lr_summary": lr_summary,
             "monitor_metric": best_checkpoint_metric,
             "monitor_value": monitor_value,
@@ -814,7 +904,7 @@ def evaluate_fold(
     device: torch.device,
     use_amp: bool,
     class_weights: torch.Tensor,
-    val_records: None,
+    val_records=None,
 ) -> tuple[float, float, dict[str, float]]:
     model.eval()
     scores: list[float] = []
@@ -900,11 +990,22 @@ def train_from_config(
             seed=int(config.training.seed),
             output_path=splits_file,
         )
+    splits = load_splits(splits_file)
+    if not splits:
+        raise ValueError(f"No folds found in split file: {splits_file}")
+    print(f"Using split file: {splits_file} ({len(splits)} folds)")
+    if len(splits) != int(config.training.num_folds):
+        print(
+            f"Warning: config.training.num_folds={int(config.training.num_folds)} "
+            f"but split file contains {len(splits)} folds: {splits_file}"
+        )
 
     if all_folds:
-        folds = list(range(int(config.training.num_folds)))
+        folds = list(range(len(splits)))
     else:
         folds = [int(config.training.fold if fold is None else fold)]
+        if folds[0] < 0 or folds[0] >= len(splits):
+            raise IndexError(f"Requested fold {folds[0]} but split file contains folds 0..{len(splits) - 1}: {splits_file}")
 
     results = []
     for current_fold in folds:

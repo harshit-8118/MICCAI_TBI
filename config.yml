@@ -1,8 +1,8 @@
 paths:
   dataset_dir: "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI"
-  pretrained_checkpoint: "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/checkpoint_final.pth"
+  pretrained_checkpoint: "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
   pretrained_plans: "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json"
-  work_dir: "checkpoints/tbi_multitalentv2"
+  work_dir: "checkpoints/tbi_multitalentv2_validation2025_train_all"
   cache_dir: "checkpoints/cache"
   splits_file: "checkpoints/train_val_test_10fold_seed42.json"
   predictions_dir: "predictions"
@@ -29,14 +29,14 @@ model:
 
 training:
   seed: 42
-  num_folds: 10
-  fold: 1
+  num_folds: 1
+  fold: 0
   batch_size: 2 # 1 or 2
   num_workers: 16
   prefetch_factor: 4
-  max_epochs: 500
-  base_lr: 0.0001
-  weight_decay: 0.00002
+  max_epochs: 120
+  base_lr: 0.00001  # 0.000003356656407834229 best from 56th epoch
+  weight_decay: 0.00001
   poly_power: 0.9
   warmup_epochs: 10
   use_amp: true
@@ -50,7 +50,7 @@ training:
   final_validation: false
   best_checkpoint_metric: "val_dice"
   best_checkpoint_mode: "max"
-  min_lr: 0.00000001
+  min_lr: 0.0000001
   head_warmup_epochs: 10
   partial_warmup_epochs: 5
   full_warmup_epochs: 2
@@ -65,40 +65,14 @@ training:
       large: 1.5
     replacement: true
   staged_tuning:
-    enabled: true
+    enabled: false
     head_only_epochs: 0
     partial_tune_epochs: 0
     head_lr: 0.001
     partial_lr: 0.0003 
-    full_lr: 0.0001
+    full_lr: 0.000003
     head_patterns: ["seg_layers", "seg", "final", "classifier", "output"]
     partial_patterns: ["decoder", "transpconvs", "seg_layers"]
-
-segmenter_a:
-  # Lesion-positive-focused second strategy.
-  # Outputs go to: checkpoints/tbi_multitalentv2/segmenter_a/fold_X
-  output_subdir: "segmenter_a"
-  init_checkpoint: "checkpoints/trained_models/best_tr_f1_kpcyjb66.pt"
-  filters_dir: "checkpoints/tbi_multitalentv2/case_filters"
-  train_min_lesion_voxels: 1  # Use 1 for max sensitivity, 51 if very tiny masks look noisy
-  val_min_lesion_voxels: 1
-  selection_min_lesion_voxels: 50
-  selection_metric: "dice_gt_over_selection_min"
-  probability_threshold: 0.5  # Lower like 0.35–0.45 increases recall, higher like 0.55–0.65 reduces false positives
-  min_component_voxels: 0   # Try 0, 5, 10, 25; be careful above 25 because true tiny lesions can die.
-  epoch_length_multiplier: 1.0
-  size_weights:
-    very_tiny: 6.0
-    tiny: 4.0
-    small: 2.5
-    large: 1.5
-    empty: 1.0
-  hard_negative:
-    enabled: false
-    empty_fraction: 0.15
-    manifest_path: "checkpoints/tbi_multitalentv2/hard_negatives/fold_1/train_empty_fp_components.csv"
-    center_sampling_prob: 0.85
-    max_centers_per_case: 8
 
 wandb:
   enabled: true
@@ -110,8 +84,8 @@ wandb:
   notes: ""
 
 inference:
-  roi_size: [160, 160, 160]
   # roi_size: [192, 192, 192]
+  roi_size: [160, 160, 160]
   overlap: 0.5
   sw_batch_size: 4
   use_amp: true
@@ -120,8 +94,8 @@ external_validation:
   # Released MICCAI-AIMS-TBI validation set with scan_XXXX.nii.gz +
   # scan_XXXX_lesion.nii.gz naming. Used for local report metrics.
   dataset_dir: "Validation2025_100/Validation2025_100"
-  output_root: "checkpoints/validation2025_100"
-  cache_dir: "checkpoints/cache_validation2025_100"
+  output_root: "checkpoints/Validation2025_100"
+  cache_dir: "checkpoints/cache_Validation2025_100"
   surface_empty_policy: "diagonal"
 
 ensemble:
@@ -136,188 +110,3 @@ ensemble:
     - "checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_tiny.pt"
     - "checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_gt50.pt"
     - "checkpoints/trained_models/best_714109.pt"
-
-hierarchical_clean:
-  # Clean paper-grade experiment family.
-  # Uses fixed test + 5 train/val folds from create_hierarchical_clean_splits.py.
-  # Important: do not initialize from old TBI checkpoints in this branch.
-  splits_file: "checkpoints/tbi_hierarchical_clean/splits/train_val_test_5fold_seed42.json"
-  output_root: "checkpoints/tbi_hierarchical_clean"
-  branches:
-    micro128:
-      output_subdir: "micro128"
-      patch_size: [128, 128, 128]
-      roi_size: [128, 128, 128]
-      overlap: 0.5
-      sw_batch_size: 1
-      oversample_foreground_prob: 0.85
-      primary_metric: "val_dice_micro"
-      primary_mode: "max"
-      validation:
-        threshold: 0.5
-        min_component_voxels: 0
-      sampling:
-        # Expected virtual patch/component sampling distribution per epoch.
-        # All train cases remain available; micro/tiny components are sampled more often.
-        epoch_length_multiplier: 2.0
-        category_fractions:
-          empty: 0.18
-          very_tiny: 0.24
-          tiny: 0.38
-          small: 0.10
-          large: 0.04
-          context: 0.06
-      component_sampling:
-        enabled: true
-        min_component_voxels: 3
-        max_components_per_case: 24
-        max_virtual_samples_per_case: 48
-        center_jitter_voxels: 10
-        random_intensity_prob: 0.2
-        empty_samples_per_case: 1
-        context_samples_per_case: 1
-        samples_per_component:
-          very_tiny: 3
-          tiny: 2
-          small: 1
-          large: 1
-      training:
-        max_epochs: 90
-        batch_size: 1
-        num_workers: 12
-        prefetch_factor: 3
-        base_lr: 0.00003
-        full_lr: 0.00003
-        weight_decay: 0.00001
-        poly_power: 0.9
-        warmup_epochs: 5
-        full_warmup_epochs: 5
-        min_lr: 0.0000001
-        use_amp: true
-        optimizer: "adamw"
-        class_weights: [1.0, 2.0]
-        grad_clip_norm: 8.0
-        staged_tuning_enabled: false
-        head_only_epochs: 0
-        partial_tune_epochs: 0
-
-    base160:
-      output_subdir: "base160"
-      patch_size: [160, 160, 160]
-      roi_size: [160, 160, 160]
-      overlap: 0.5
-      sw_batch_size: 1
-      oversample_foreground_prob: 0.50
-      primary_metric: "val_dice_positive"
-      primary_mode: "max"
-      validation:
-        threshold: 0.5
-        min_component_voxels: 0
-      sampling:
-        epoch_length_multiplier: 1.0
-        category_fractions:
-          empty: 0.25
-          very_tiny: 0.08
-          tiny: 0.27
-          small: 0.25
-          large: 0.15
-      training:
-        max_epochs: 80
-        batch_size: 1
-        num_workers: 12
-        prefetch_factor: 3
-        base_lr: 0.00003
-        full_lr: 0.00003
-        weight_decay: 0.00001
-        poly_power: 0.9
-        warmup_epochs: 5
-        full_warmup_epochs: 5
-        min_lr: 0.0000001
-        use_amp: true
-        optimizer: "adamw"
-        class_weights: [1.0, 2.0]
-        grad_clip_norm: 8.0
-        staged_tuning_enabled: false
-        head_only_epochs: 0
-        partial_tune_epochs: 0
-
-    context160:
-      output_subdir: "context160"
-      patch_size: [160, 160, 160]
-      roi_size: [160, 160, 160]
-      overlap: 0.5
-      sw_batch_size: 1
-      oversample_foreground_prob: 0.40
-      primary_metric: "val_dice_positive"
-      primary_mode: "max"
-      validation:
-        threshold: 0.5
-        min_component_voxels: 0
-      sampling:
-        epoch_length_multiplier: 1.0
-        category_fractions:
-          empty: 0.25
-          very_tiny: 0.05
-          tiny: 0.20
-          small: 0.30
-          large: 0.20
-      training:
-        max_epochs: 80
-        batch_size: 1
-        num_workers: 12
-        prefetch_factor: 3
-        base_lr: 0.00002
-        full_lr: 0.00002
-        weight_decay: 0.00001
-        poly_power: 0.9
-        warmup_epochs: 5
-        full_warmup_epochs: 5
-        min_lr: 0.0000001
-        use_amp: true
-        optimizer: "adamw"
-        class_weights: [1.0, 2.0]
-        grad_clip_norm: 8.0
-        staged_tuning_enabled: false
-        head_only_epochs: 0
-        partial_tune_epochs: 0
-
-
-yolo:
-  # 2D YOLO segmentation branch for contour-based second-stage experiments.
-  # Default goal: learn high-precision small/large lesion contours, not tiny recall.
-  enabled: true
-  splits_file: null  # null means use paths.splits_file
-  fold: 0
-  output_dir: "checkpoints/tbi_yolo_seg/fold_0_100mri"
-  log_file: "checkpoints/tbi_yolo_seg/fold_0_100mri/finetune_log.txt"
-  seed: 42
-  axis: "axial"
-  target_categories: ["small", "large"]
-  train_mri_limit: 100
-  val_mri_limit: null
-  case_sampling: "target_then_fill"
-  model: "yolo26m-seg.pt"
-  image_size: 512  # 256^3 slices upsample cleanly; 640 is feasible but slower/heavier.
-  epochs: 100
-  batch_size: 32
-  workers: 8
-  device: 0
-  patience: 20
-  optimizer: "auto"
-  lr0: 0.001
-  weight_decay: 0.0005
-  cache: false
-  pretrained: true
-  positive_slice_margin: 2
-  negative_slice_ratio: 1.0
-  max_negative_slices_per_case: 12
-  min_contour_area_px: 8
-  min_component_voxels_3d: 1000
-  min_slice_foreground_fraction: 0.03
-  min_slice_std: 0.01
-  clip_range: [-4.0, 4.0]
-  prediction_conf: 0.15
-  prediction_iou: 0.50
-  max_det: 50
-  save_val_predictions: true
-  eval_categories: ["small", "large"]
