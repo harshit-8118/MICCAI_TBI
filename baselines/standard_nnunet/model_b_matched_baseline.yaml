@@ -1,0 +1,131 @@
+# Paper-safe setup for one conventional nnU-Net baseline against Model B.
+# Fill the three *_root/path values on the Linux training machine, or pass the
+# corresponding command-line overrides to prepare_standard_nnunet_baseline.py.
+protocol:
+  name: standard-nnunet-vs-model-b
+  scope: local-development training with post-training released-validation benchmarking
+  primary_external_operating_point:
+    threshold: 0.20
+    min_component_voxels: 40
+  sensitivity_external_operating_point:
+    threshold: 0.50
+    min_component_voxels: 0
+  prohibited_claims:
+    - "No hidden-test result may be attributed to this baseline."
+    - "Released Phase-2 validation is not an independent holdout."
+    - "This comparison does not isolate pretraining because architecture and initialization both differ."
+  cohort_isolation:
+    training_and_planning: "Only the 522 Model-B development cases."
+    local_holdout: "The same 30 Model-B test/holdout cases are excluded from nnUNet_raw and preprocessing."
+    released_validation: "The 103 Phase-2 cases are not read, linked, copied, planned, preprocessed, or trained on until post-training inference."
+method_definition:
+  # This is intentionally the canonical nnU-Net v2 method, not a re-tuned
+  # randomly initialized copy of Model B. Matching the data partition and
+  # evaluation is required; matching Model B's optimizer or fine-tuning
+  # schedule would make this no longer a standard nnU-Net comparator.
+  architecture:
+    network: PlainConvUNet
+    encoder: plain_convolutional
+    residual_encoder: false
+    initial_base_features: 32
+    maximum_3d_features: 320
+    blocks_per_encoder_stage: 2
+    blocks_per_decoder_stage: 2
+    capacity_is_plan_derived: true
+    report_after_planning:
+      - network class
+      - feature map widths
+      - number of stages
+      - patch size
+      - batch size
+      - total and trainable parameter counts
+  planning:
+    planner: ExperimentPlanner
+    gpu_memory_target_gb: 8
+    target_spacing: self_configured_from_dataset_fingerprint
+    patch_size: self_configured_from_dataset_fingerprint_and_planner
+    batch_size: self_configured_from_dataset_fingerprint_and_planner
+    # Do not change this target to match the A6000. The canonical planner's
+    # default 8-GB reference target is part of the standard protocol; the
+    # A6000 is only the machine that executes it.
+  initialization:
+    pretrained_checkpoint: none
+    convolution_weights: Kaiming_normal_for_LeakyReLU_neg_slope_0.01
+    convolution_bias: zero
+  optimization:
+    trainer: nnUNetTrainer
+    optimizer: SGD
+    initial_learning_rate: 0.01
+    momentum: 0.99
+    nesterov: true
+    weight_decay: 0.00003
+    schedule: polynomial
+    epochs: 1000
+    iterations_per_epoch: 250
+    validation_iterations_per_epoch: 50
+    warmup: none
+    all_parameters_trainable_from_first_update: true
+    deep_supervision: true
+    # "Equal" here means the Dice and CE *terms* each have coefficient 1.0.
+    # It does not mean foreground/background class weights. Canonical nnU-Net
+    # uses unweighted CE (no 1:2 lesion class weighting), unlike Model B.
+    loss:
+      composition: Dice_plus_cross_entropy
+      dice_term_weight: 1.0
+      cross_entropy_term_weight: 1.0
+      cross_entropy_class_weights: none
+    foreground_oversampling_probability: 0.33
+    checkpoint_for_external_inference: checkpoint_final.pth
+wandb:
+  # Uses nnU-Net's built-in MetaLogger/WandbLogger, not a custom trainer.
+  # It therefore records training curves without changing weights, batches,
+  # losses, checkpoint selection, or inference.
+  enabled: true
+  project: AIMS-TBI-standard-nnUNet
+  mode: online
+  entity: null  # Set WANDB_ENTITY on the training machine if required.
+  training_metrics:
+    - learning_rate
+    - train_loss
+    - validation_patch_loss
+    - validation_patch_foreground_dice
+    - validation_patch_foreground_dice_ema
+  full_volume_stratified_metrics:
+    source: fixed_post_training_evaluation_only
+    groups:
+      empty: "0 lesion voxels"
+      micro: "1-999 lesion voxels (very_tiny + tiny)"
+      small: "1,000-4,999 lesion voxels"
+      large: "5,000 or more lesion voxels"
+    prohibition: "Never use subgroup values from random validation patches in the paper or for checkpoint selection."
+model_b_reference: model_b_reference.yaml
+data:
+  # Must contain the 552 local scan_XXXX_T1 + scan_XXXX_Lesion pairs.
+  source_dataset_dir: null
+  # The exact Model-B split file. It must contain 10 folds and a 30-case test
+  # list; fold 0 is used for this baseline.
+  model_b_split_file: null
+  expected_full_cohort_cases: 552
+  expected_development_pool_cases: 522
+  expected_excluded_cases: 30
+  expected_number_of_folds: 10
+  fold: 0
+  case_prefix: scan_
+nnunet:
+  # Change 501 only if this ID is already occupied in nnUNet_raw.
+  dataset_id: 501
+  dataset_name: AIMSTBI_T1_Standard
+  raw_root: null
+  preprocessed_root: null
+  results_root: null
+  configuration: 3d_fullres
+  trainer: nnUNetTrainer
+  plans_identifier: nnUNetPlans
+  checkpoint_for_external_inference: checkpoint_final.pth
+  image_reader_writer: NibabelIOWithReorient
+  nnunet_version: null  # Filled from the installed package into baseline_manifest.json.
+outputs:
+  run_root: checkpoints/paper_baselines/standard_nnunet_model_b_matched
+  # `hardlink` avoids duplication but requires source and destination to be on
+  # the same filesystem. Use `copy` only when hardlinks are unavailable.
+  link_mode: hardlink

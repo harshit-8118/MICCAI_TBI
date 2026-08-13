@@ -1,0 +1,44 @@
+# Immutable provenance summary for the historical direct MultiTalentV2 model
+# (W&B run e5ohnz5w). This file is documentation only; it does not launch it.
+model_id: model_b_e5ohnz5w
+role: historical direct pretrained comparator
+source:
+  wandb_run: e5ohnz5w
+  git_commit: 7e2a800a8ba73c1f0b215e7ab11cfb73f5b73f1b
+  checkpoint: checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt
+  source_config: C:/Users/hhars/Downloads/e5ohnz5w.yaml
+data:
+  input: T1-weighted MRI only
+  target_spacing_mm: [1.0, 1.0, 1.0]
+  patch_size_voxels: [160, 160, 160]
+  development_pool_cases: 522
+  excluded_cases: 30
+  fold: 0
+  split: "90/10 within the 522-case development pool"
+training:
+  initialization: MultiTalentV2 checkpoint_final.pth
+  full_network_fine_tuning: true
+  effective_stages:
+    head_only_epochs: 0
+    partial_tune_epochs: 0
+    full_network_epochs: 300
+    full_network_warmup_epochs: 2
+  initialization_audit:
+    - "The historical loader instantiated the residual network from the MultiTalent plan, then loaded all checkpoint tensors with matching names and shapes."
+    - "The historical config listed output-name skip patterns, but the loader at commit 7e2a800 did not consume that setting; the exact output-head loading status must therefore be verified from the checkpoint compatibility log before being stated in the paper."
+  epochs: 300
+  batch_size: 2
+  optimizer: AdamW
+  peak_learning_rate: 0.0001
+  minimum_learning_rate: 1.0e-08
+  warmup_epochs: 2
+  weight_decay: 2.0e-05
+  gradient_clip_norm: 8
+  loss: "Dice + weighted cross-entropy (weights 1:2)"
+  foreground_oversampling_probability: 0.33
+  checkpoint_selection: maximum validation Dice
+  seed: 42
+  hardware: NVIDIA RTX A6000
+limitations:
+  - "The 30 excluded cases were not used to train Model B, but were repeatedly used for development and are not an independent test set."
+  - "This historical model is retained as-is and is not retrained by the standard nnU-Net baseline workflow."

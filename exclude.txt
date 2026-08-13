@@ -1,7 +1,8 @@
-MICCAI_AIMS_TBI
-wandb 
-checkpoints/tbi_multitalentv2/segmenter_a_hardneg
-checkpoints/tbi_multitalentv2/segmenter_a
-checkpoints/cache
-MultiTalentV2_pretrained
-checkpoints/trained_models/not_good
+/MICCAI_AIMS_TBI
+/wandb 
+/venv
+/Validation2025_100
+/checkpoints/cache_Validation2025_100
+/MultiTalentV2_pretrained
+/checkpoints/paper_baselines/random_residual_model_b_matched/cache_1mm
+archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models

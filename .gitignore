@@ -17,3 +17,4 @@ PLOTS/
 aims_tbi_docker_det/
 aims_tbi_docker_seg/
 MRI_GT_PRED_COMPARISION/
+venv/

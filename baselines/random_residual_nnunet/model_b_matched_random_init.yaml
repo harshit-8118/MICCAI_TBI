@@ -1,0 +1,114 @@
+# Matched scratch residual control for Model B. This is intentionally not a
+# conventional plain nnU-Net baseline: it isolates the initialization factor
+# by retaining Model B's residual architecture and effective fine-tuning setup.
+protocol:
+  name: random-initialized-residual-nnunet-vs-model-b
+  purpose: "Isolate MultiTalentV2 initialization in Model B's residual architecture."
+  permitted_difference_from_model_b:
+    - "model.load_pretrained is false"
+    - "model.initialization is explicit seeded Kaiming-normal initialization"
+  prohibited_claims:
+    - "No hidden-test result may be attributed to this control."
+    - "Released Phase-2 validation is not an independent holdout."
+    - "Do not change thresholds, minCC, checkpoints, or training settings using Phase-2 results."
+  cohort_isolation:
+    training_and_internal_validation: "Only the 522-case Model-B development pool, using the original fold-0 split."
+    local_excluded_cases: "The same 30 cases remain outside fold-0 train/validation."
+    released_validation: "Not read, cached, copied, planned, or trained on before the final checkpoint is fixed."
+
+paths:
+  dataset_dir: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI
+  # This file supplies architecture only; no tensor is loaded from it.
+  pretrained_plans: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json
+  pretrained_checkpoint: null
+  # These paths are relative to this YAML file, not to the shell's cwd.
+  splits_file: ../../checkpoints/train_val_test_10fold_seed42.json
+  work_dir: ../../checkpoints/paper_baselines/random_residual_model_b_matched
+  cache_dir: ../../checkpoints/paper_baselines/random_residual_model_b_matched/cache_1mm
+  predictions_dir: ../../checkpoints/paper_baselines/random_residual_model_b_matched/predictions
+
+data:
+  target_spacing: [1.0, 1.0, 1.0]
+  patch_size: [160, 160, 160]
+  input_modalities: [T1]
+  include_dmri: false
+  dmri_reduce: mean
+  dmri_b0_threshold: 50.0
+  allow_missing_modalities: true
+  normalize_foreground_only: true
+  cache_preprocessed: true
+  oversample_foreground_prob: 0.33
+
+model:
+  in_channels: 1
+  out_channels: 2
+  deep_supervision: false
+  load_pretrained: false
+  strict_load: false
+  # This is a fresh scratch model. It is the only causal difference from
+  # Model B's MultiTalentV2 checkpoint initialization.
+  initialization: kaiming_normal_leaky_relu_0.01
+
+training:
+  seed: 42
+  num_folds: 1
+  fold: 0
+  batch_size: 2
+  num_workers: 16
+  prefetch_factor: 4
+  max_epochs: 300
+  base_lr: 0.0001
+  weight_decay: 0.00002
+  poly_power: 0.9
+  # Retained for exact historical provenance; the active full-network
+  # scheduler uses full_warmup_epochs below because staged tuning is disabled.
+  warmup_epochs: 10
+  head_warmup_epochs: 10
+  partial_warmup_epochs: 5
+  full_warmup_epochs: 2
+  min_lr: 0.00000001
+  use_amp: true
+  optimizer: adamw
+  loss: dice_ce
+  class_weights: [1.0, 2.0]
+  metric_threshold: 0.5
+  grad_clip_norm: 8.0
+  save_every_epoch: false
+  validation_interval_epochs: 1
+  final_validation: false
+  best_checkpoint_metric: val_dice
+  best_checkpoint_mode: max
+  case_sampling:
+    enabled: false
+    positive_fraction: 0.65
+    epoch_length_multiplier: 1.0
+    size_weights:
+      empty: 1.0
+      tiny: 3.0
+      small: 2.0
+      large: 1.5
+    replacement: true
+  staged_tuning:
+    enabled: false
+    head_only_epochs: 0
+    partial_tune_epochs: 0
+    head_lr: 0.0001
+    partial_lr: 0.0001
+    full_lr: 0.0001
+    head_patterns: [seg_layers, seg, final, classifier, output]
+    partial_patterns: [decoder, transpconvs, seg_layers]
+
+wandb:
+  enabled: true
+  project: AIMS-TBI-random-residual-control
+  entity: da25s003-indian-institute-of-technology-madras
+  name: random_residual_model_b_matched_fold0_seed42
+  mode: online
+  tags: [tbi, random-init, residual-nnunet, model-b-matched, fold-0, seed-42]
+  notes: "Scratch residual control: same Model-B architecture/data/training; no MultiTalentV2 weights."
+
+inference:
+  roi_size: [160, 160, 160]
+  overlap: 0.5
+  sw_batch_size: 4
+  use_amp: true

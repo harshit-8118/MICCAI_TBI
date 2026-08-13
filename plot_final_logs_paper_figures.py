@@ -82,6 +82,25 @@ ASSD_GROUPS = [
 ]
 
 
+# The revision paper evaluates every completed configuration at one common
+# operating point. Keep this mapping explicit: it prevents raw checkpoint
+# names, different threshold/minCC choices, or silently missing baselines from
+# entering the lesion-size figure.
+CONTROLLED_PRIMARY_CONFIGURATIONS = [
+    ("single_ddp_fft_finetuned_kpycyjb66_no_tta_mA", "Model A\nno-TTA"),
+    ("single_ddp_fft_finetuned_kpycyjb66_tta_mA", "Model A\nTTA"),
+    ("best_val_f0_e5ohnz5w_no_tta_mB", "Model B\nno-TTA"),
+    ("best_val_f0_e5ohnz5w_tta_mB", "Model B\nTTA"),
+    ("ensemble_2_models_ddp_kpcyjb66_no_tta_e5ohnz5w_no_tta", "A+B\nno-TTA/no-TTA"),
+    ("ensemble_2_models_e5ohnz5w_tta_ddp_kpcyjb66_no_tta_hybrid", "A+B\nno-TTA/TTA\n(submitted)"),
+    ("ensemble_2_models_e5ohnz5w_no_tta_ddp_kpcyjb66_tta_hybrid", "A+B\nTTA/no-TTA"),
+    ("ensemble_2_models_e5ohnz5w_tta_ddp_kpcyjb66_tta_hybrid", "A+B\nTTA/TTA"),
+    ("standard_nnunet_model_b_matched", "Standard nnU-Net\n(mirror TTA)"),
+    ("random_residual_nnunet_no_tta_103", "Scratch residual\nno-TTA"),
+    ("random_residual_nnunet_tta_103", "Scratch residual\nTTA"),
+]
+
+
 @dataclass
 class FinalLogRow:
     benchmark: str
@@ -196,12 +215,20 @@ def read_final_logs(path: Path) -> list[FinalLogRow]:
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
         for raw_index, raw in enumerate(reader, start=2):
-            benchmark = str(raw.get("BENCHMARKS", "")).strip()
+            # The paper logs contain human-readable headers such as
+            # "threshold " and "dice positive ". Normalize once here rather
+            # than requiring hand-edits to the audited source CSV files.
+            normalized = {
+                str(column).strip(): value
+                for column, value in raw.items()
+                if column is not None
+            }
+            benchmark = str(normalized.get("BENCHMARKS", "")).strip()
             if benchmark:
                 current_benchmark = benchmark
-            if not str(raw.get("threshold", "")).strip():
+            if not str(normalized.get("threshold", "")).strip():
                 continue
-            values = {column: _to_float(raw.get(column, "")) for column in NUMERIC_COLUMNS}
+            values = {column: _to_float(normalized.get(column, "")) for column in NUMERIC_COLUMNS}
             short_name = _short_benchmark_name(current_benchmark)
             family = _model_family(short_name)
             rows.append(
@@ -623,6 +650,126 @@ def plot_group_panels(rows: list[FinalLogRow], output_dir: Path, top_n: int, lab
         plt.close(fig)
 
 
+def _controlled_primary_rows(
+    rows: list[FinalLogRow],
+    threshold: float,
+    mincc: float,
+) -> list[tuple[FinalLogRow, str]]:
+    """Select the pre-specified 11-row revision figure without ranking rows."""
+    selected: dict[str, FinalLogRow] = {}
+    expected_ids = {benchmark for benchmark, _ in CONTROLLED_PRIMARY_CONFIGURATIONS}
+    for row in rows:
+        if row.benchmark not in expected_ids:
+            continue
+        if not math.isclose(row.values["threshold"], threshold, abs_tol=1e-12):
+            continue
+        if not math.isclose(row.values["mincc"], mincc, abs_tol=1e-12):
+            continue
+        if row.benchmark in selected:
+            raise ValueError(
+                "More than one row matched the controlled operating point for "
+                f"{row.benchmark!r}. Input logs must contain one row per configuration."
+            )
+        selected[row.benchmark] = row
+
+    missing = [benchmark for benchmark, _ in CONTROLLED_PRIMARY_CONFIGURATIONS if benchmark not in selected]
+    if missing:
+        raise ValueError(
+            "The controlled lesion-size figure requires all 11 completed configurations at "
+            f"threshold={threshold:g}, minCC={mincc:g}. Missing: {', '.join(missing)}"
+        )
+    return [(selected[benchmark], label) for benchmark, label in CONTROLLED_PRIMARY_CONFIGURATIONS]
+
+
+def plot_controlled_lesion_size_metrics(
+    rows: list[FinalLogRow],
+    output_dir: Path,
+    threshold: float,
+    mincc: float,
+) -> None:
+    """Write the revised Figure 3 from the common, pre-specified operating point.
+
+    It is intentionally a descriptive lesion-size figure. All eleven completed
+    configurations are included, while the main table carries the inferential
+    CIs and paired comparisons.
+    """
+    selected = _controlled_primary_rows(rows, threshold, mincc)
+    labels = [label for _, label in selected]
+    panel_specs = [
+        ("(a) Dice", ["dice micro", "dice small", "dice large"], "YlGnBu", True, 0.0, 1.0, 3),
+        ("(b) HD95 (mm)", ["hd95 micro", "hd95 small", "hd95 large"], "YlOrRd_r", False, None, None, 1),
+        ("(c) ASSD (mm)", ["assd micro", "assd small", "assd large"], "YlOrRd_r", False, None, None, 1),
+    ]
+    group_labels = ["Micro\n(n=14)", "Small\n(n=15)", "Large\n(n=26)"]
+    n_rows = len(selected)
+    # Keep this at a single-column-friendly visual density when inserted across
+    # the manuscript width: panel headings only, no overall title or colourbars.
+    fig, axes = plt.subplots(1, len(panel_specs), figsize=(7.2, 4.0), sharey=True)
+
+    for panel_index, (title, keys, cmap, higher_is_better, fixed_min, fixed_max, digits) in enumerate(panel_specs):
+        ax = axes[panel_index]
+        data = np.array([[row.values[key] for key in keys] for row, _ in selected], dtype=float)
+        if fixed_min is None:
+            # Keep the colour scale robust to the diagonal penalty on complete misses,
+            # while retaining the exact values as printed text in every cell.
+            finite = data[np.isfinite(data)]
+            vmin = 0.0
+            vmax = max(1.0, float(np.percentile(finite, 95)))
+        else:
+            vmin, vmax = fixed_min, fixed_max
+        image = ax.imshow(data, cmap=cmap, vmin=vmin, vmax=vmax, aspect="auto")
+        ax.set_title(title, fontsize=8, fontweight="normal", pad=4)
+        ax.set_xticks(np.arange(len(keys)))
+        ax.set_xticklabels(group_labels, fontsize=7)
+        ax.tick_params(axis="both", length=0)
+        if panel_index == 0:
+            ax.set_yticks(np.arange(n_rows))
+            ax.set_yticklabels(labels, fontsize=7)
+        else:
+            ax.tick_params(axis="y", labelleft=False)
+
+        # White boundaries keep adjacent cells visually distinct after the
+        # figure is reduced to manuscript width.
+        ax.set_xticks(np.arange(-0.5, len(keys), 1), minor=True)
+        ax.set_yticks(np.arange(-0.5, n_rows, 1), minor=True)
+        ax.grid(which="minor", color="white", linewidth=0.8)
+        ax.tick_params(which="minor", bottom=False, left=False)
+
+        # Bold the best configuration in each lesion-size column: maximum Dice,
+        # minimum surface distance. Ties are preserved rather than broken arbitrarily.
+        for column_index in range(data.shape[1]):
+            column = data[:, column_index]
+            target = np.nanmax(column) if higher_is_better else np.nanmin(column)
+            for row_index, value in enumerate(column):
+                if not math.isfinite(value):
+                    continue
+                is_best = math.isclose(float(value), float(target), rel_tol=1e-10, abs_tol=1e-10)
+                normalized = (value - vmin) / (vmax - vmin) if vmax > vmin else 0.5
+                # Dice is darkest at high values; the reversed distance colormap is
+                # darkest at low values.
+                dark_cell = normalized > 0.68 if higher_is_better else normalized < 0.32
+                text_colour = "white" if dark_cell else "#202020"
+                ax.text(
+                    column_index,
+                    row_index,
+                    _fmt(value, digits),
+                    ha="center",
+                    va="center",
+                    fontsize=7,
+                    fontweight="bold" if is_best else "normal",
+                    color=text_colour,
+                )
+
+        # Separate TTA/ensemble ablation rows from the three reviewer-requested
+        # baseline/control rows without hiding either group.
+        ax.axhline(7.5, color="#333333", linewidth=0.7)
+
+    fig.subplots_adjust(left=0.25, right=0.995, bottom=0.13, top=0.91, wspace=0.07)
+    fig.savefig(output_dir / "plot_04_lesion_size_metrics.png", dpi=450, bbox_inches="tight")
+    fig.savefig(output_dir / "plot_04_lesion_size_metrics.pdf", bbox_inches="tight")
+    plt.close(fig)
+
+
 def plot_best_per_benchmark(rows: list[FinalLogRow], output_dir: Path, label_width: int) -> None:
     best_by_benchmark: dict[str, FinalLogRow] = {}
     for row in rows:
@@ -957,6 +1104,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, default=Path("paper_figures") / "final_logs", help="Directory for figures and cleaned CSV.")
     parser.add_argument("--top-n", type=int, default=20, help="Number of top rows to show in compact heatmaps.")
     parser.add_argument("--label-width", type=int, default=34, help="Wrap y-axis labels to this many characters.")
+    parser.add_argument(
+        "--figure",
+        choices=("all", "controlled_lesion_size"),
+        default="all",
+        help="Write all legacy plots, or only the revised fixed-setting Figure 3.",
+    )
+    parser.add_argument(
+        "--controlled-threshold",
+        type=float,
+        default=0.2,
+        help="Threshold required for the revised fixed-setting Figure 3.",
+    )
+    parser.add_argument(
+        "--controlled-mincc",
+        type=float,
+        default=40,
+        help="Minimum component size required for the revised fixed-setting Figure 3.",
+    )
     return parser.parse_args()
 
 
@@ -968,6 +1133,17 @@ def main() -> None:
     write_clean_csv(rows, args.output_dir / "cleaned_final_logs_with_ranks.csv")
     sorted_rows = sorted(rows, key=_rank_sort_key)
     write_clean_csv(sorted_rows, args.output_dir / "ranked_final_logs.csv")
+
+    plot_controlled_lesion_size_metrics(
+        rows,
+        args.output_dir,
+        args.controlled_threshold,
+        args.controlled_mincc,
+    )
+    if args.figure == "controlled_lesion_size":
+        print(f"Read {len(rows)} metric rows from {args.csv}")
+        print(f"Wrote revised Figure 3 to {args.output_dir / 'plot_04_lesion_size_metrics.png'}")
+        return
 
     top_n = max(1, min(args.top_n, len(rows)))
     plot_headline_grouped_bars(rows, args.output_dir, args.label_width)

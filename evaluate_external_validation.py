@@ -6,6 +6,7 @@ import itertools
 import json
 import math
 from pathlib import Path
+import re
 from types import SimpleNamespace
 from typing import Iterable
 
@@ -69,6 +70,19 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--thresholds", nargs="+", type=float, default=None)
     parser.add_argument("--min-components", nargs="+", type=int, default=None)
+    parser.add_argument(
+        "--locked-settings",
+        nargs="+",
+        default=None,
+        metavar="TAU:MINCC",
+        help=(
+            "Evaluate exactly these threshold/minimum-component pairs, for example "
+            "--locked-settings 0.2:40 0.5:0. This prevents the Cartesian "
+            "threshold/minCC sweep used by the legacy --thresholds and "
+            "--min-components arguments. It is available only for ordinary "
+            "probability-average inference with --postprocess none."
+        ),
+    )
     parser.add_argument(
         "--postprocess",
         choices=["none", "dilate", "core_halo"],
@@ -662,6 +676,24 @@ def _format_float(value: object, digits: int = 4) -> str:
     return "nan" if not math.isfinite(number) else f"{number:.{digits}f}"
 
 
+def _parse_locked_settings(values: list[str] | None) -> list[tuple[float, int]] | None:
+    """Parse pre-specified ``tau:minCC`` pairs without creating a Cartesian sweep."""
+    if values is None:
+        return None
+    pairs: list[tuple[float, int]] = []
+    for value in values:
+        match = re.fullmatch(r"\s*([0-9]*\.?[0-9]+)\s*:\s*([0-9]+)\s*", str(value))
+        if match is None:
+            raise ValueError(f"Invalid --locked-settings value {value!r}; use TAU:MINCC, e.g. 0.2:40.")
+        threshold, min_component_voxels = float(match.group(1)), int(match.group(2))
+        if not 0.0 <= threshold <= 1.0:
+            raise ValueError(f"Locked threshold must be in [0, 1], got {threshold}.")
+        pairs.append((threshold, min_component_voxels))
+    if len(pairs) != len(set(pairs)):
+        raise ValueError("Each --locked-settings pair must be listed once.")
+    return pairs
+
+
 def _build_sweep_settings(
     args: argparse.Namespace,
     thresholds: list[float],
@@ -829,17 +861,28 @@ def main() -> None:
         _preflight_check_records(records)
     case_infos = build_case_infos(records, split="external_validation")
 
-    thresholds = args.thresholds
-    if thresholds is None and branch_cfg is not None:
-        thresholds = [float(_get(branch_cfg.validation, "threshold", 0.5))]
-    if thresholds is None:
-        thresholds = [float(_get(config.training, "metric_threshold", 0.5))]
+    locked_settings = _parse_locked_settings(args.locked_settings)
+    if locked_settings is not None:
+        if args.thresholds is not None or args.min_components is not None:
+            raise ValueError("Use either --locked-settings or --thresholds/--min-components, not both.")
+        if args.ensemble_strategy != "probability_average" or args.postprocess != "none":
+            raise ValueError(
+                "--locked-settings is restricted to --ensemble-strategy probability_average with --postprocess none."
+            )
+        thresholds = sorted({threshold for threshold, _ in locked_settings})
+        min_components = sorted({min_component for _, min_component in locked_settings})
+    else:
+        thresholds = args.thresholds
+        if thresholds is None and branch_cfg is not None:
+            thresholds = [float(_get(branch_cfg.validation, "threshold", 0.5))]
+        if thresholds is None:
+            thresholds = [float(_get(config.training, "metric_threshold", 0.5))]
 
-    min_components = args.min_components
-    if min_components is None and branch_cfg is not None:
-        min_components = [int(_get(branch_cfg.validation, "min_component_voxels", 0))]
-    if min_components is None:
-        min_components = [0]
+        min_components = args.min_components
+        if min_components is None and branch_cfg is not None:
+            min_components = [int(_get(branch_cfg.validation, "min_component_voxels", 0))]
+        if min_components is None:
+            min_components = [0]
 
     checkpoint_paths = [resolve_path(base_dir, path) for path in args.checkpoints]
     for checkpoint_path in checkpoint_paths:
@@ -880,6 +923,21 @@ def main() -> None:
         halo_thresholds,
         max_growth_ratios,
     )
+    if locked_settings is not None:
+        allowed_pairs = set(locked_settings)
+        sweep_settings = [
+            setting
+            for setting in sweep_settings
+            if (float(setting["threshold"]), int(setting["min_component_voxels"])) in allowed_pairs
+        ]
+        observed_pairs = {
+            (float(setting["threshold"]), int(setting["min_component_voxels"])) for setting in sweep_settings
+        }
+        if observed_pairs != allowed_pairs:
+            raise RuntimeError(
+                f"Could not construct exactly the requested locked settings: observed={observed_pairs}, "
+                f"requested={allowed_pairs}."
+            )
 
     output_root = resolve_path(base_dir, _get(external_cfg, "output_root", "checkpoints/Validation2025_100"))
     output_dir = (
@@ -930,6 +988,11 @@ def main() -> None:
         "ensemble_strategy": args.ensemble_strategy,
         "thresholds": thresholds,
         "min_components": min_components,
+        "locked_settings": (
+            [{"threshold": threshold, "min_component_voxels": min_component_voxels} for threshold, min_component_voxels in locked_settings]
+            if locked_settings is not None
+            else None
+        ),
         "m1_thresholds": args.m1_thresholds,
         "m1_min_components": args.m1_min_components,
         "m2_thresholds": args.m2_thresholds,
