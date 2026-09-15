@@ -21,7 +21,6 @@ released Phase-2 validation set and **0.5533** on the hidden challenge test set.
   fixed-setting inference analyses.
 - `baselines/` — standard nnU-Net, matched randomly initialized residual U-Net,
   bootstrap confidence intervals, and paired statistical comparisons.
-- `plot_final_logs_paper_figures.py` — paper-ready plots from final result logs.
 
 ## Data and checkpoints
 
