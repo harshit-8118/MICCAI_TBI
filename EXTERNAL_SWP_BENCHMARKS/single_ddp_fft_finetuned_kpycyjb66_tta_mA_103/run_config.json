@@ -4,7 +4,7 @@
   "dataset_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100",
   "output_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_tta_mA_103",
   "checkpoints": [
-    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_DL_0.54_rank1_leaderboard.pt"
   ],
   "ensemble_strategy": "probability_average",
   "thresholds": [
@@ -52,7 +52,7 @@
   ],
   "checkpoint_tta_pairs": [
     {
-      "checkpoint": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt",
+      "checkpoint": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_DL_0.54_rank1_leaderboard.pt",
       "tta": "flips3"
     }
   ],

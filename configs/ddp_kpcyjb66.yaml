@@ -1,0 +1,202 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            31h0f20e9xeylffgdra94u430142aidy:
+                args:
+                    - --config
+                    - config_ddp_finetune.yml
+                    - --fold
+                    - "0"
+                    - --no-deep-supervision-loss
+                codePath: train.py
+                codePathLocal: train.py
+                cpu_count: 8
+                cpu_count_logical: 16
+                cudaVersion: "12.2"
+                disk:
+                    /:
+                        total: "100192776192"
+                        used: "89041727488"
+                email: da25s003@smail.iitm.ac.in
+                executable: /home/lab/.pyenv/versions/3.11.8/bin/python3
+                gpu: NVIDIA GeForce RTX 2080 Ti
+                gpu_count: 2
+                gpu_nvidia:
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-5379a4ee-5164-498d-67a8-5b9ac2fe225d
+                    - architecture: Maxwell
+                      cudaCores: 3072
+                      memoryTotal: "12884901888"
+                      name: NVIDIA GeForce GTX TITAN X
+                      uuid: GPU-f7171f3b-7976-d097-fb4d-db1e940aa055
+                host: ganapathy
+                memory:
+                    total: "67315159040"
+                os: Linux-5.15.0-139-generic-x86_64-with-glibc2.31
+                program: /media/lab/My Book/MICCAI_AIMS_TBI/train.py
+                python: CPython 3.11.8
+                root: /media/lab/My Book/MICCAI_AIMS_TBI/checkpoints/tbi_multitalentv2_ddp_full_finetune/fold_0/wandb
+                startedAt: "2026-06-19T16:07:18.200473Z"
+                writerId: 31h0f20e9xeylffgdra94u430142aidy
+        m: []
+        python_version: 3.11.8
+        t:
+            "1":
+                - 1
+                - 5
+                - 53
+                - 105
+            "2":
+                - 1
+                - 5
+                - 53
+                - 105
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+                - 61
+                - 62
+            "4": 3.11.8
+            "5": 0.25.1
+            "10":
+                - 20
+            "12": 0.25.1
+            "13": linux-x86_64
+data:
+    value:
+        allow_missing_modalities: true
+        cache_preprocessed: true
+        dmri_b0_threshold: 50
+        dmri_reduce: mean
+        include_dmri: false
+        input_modalities:
+            - T1
+        normalize_foreground_only: true
+        oversample_foreground_prob: 0.33
+        patch_size:
+            - 160
+            - 160
+            - 160
+        target_spacing:
+            - 1
+            - 1
+            - 1
+ensemble:
+    value:
+        checkpoint_glob: checkpoints/tbi_multitalentv2_ddp_full_finetune/fold_*/best.pt
+        enabled: true
+        output_name: ensemble
+inference:
+    value:
+        overlap: 0.5
+        roi_size:
+            - 192
+            - 192
+            - 192
+        sw_batch_size: 2
+        use_amp: true
+model:
+    value:
+        deep_supervision: false
+        in_channels: 1
+        load_pretrained: true
+        out_channels: 2
+        skip_pretrained_name_patterns:
+            - seg
+            - final
+            - classifier
+            - output
+        strict_load: false
+paths:
+    value:
+        cache_dir: checkpoints/cache
+        dataset_dir: /media/lab/My Book/MICCAI_AIMS_TBI/MICCAI_AIMS_TBI
+        init_checkpoint: /media/lab/My Book/MICCAI_AIMS_TBI/MultiTalentV2_pretrained/best_tr_f1_kpcyjb66.pt
+        predictions_dir: predictions
+        pretrained_checkpoint: /media/lab/My Book/MICCAI_AIMS_TBI/MultiTalentV2_pretrained/best_tr_f1_kpcyjb66.pt
+        pretrained_plans: /media/lab/My Book/MICCAI_AIMS_TBI/MultiTalentV2_pretrained/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json
+        splits_file: checkpoints/tbi_splits_5fold.json
+        work_dir: checkpoints/tbi_multitalentv2_ddp_full_finetune
+splits:
+    value:
+        holdout_test: true
+        test_counts:
+            empty: 10
+            large: 4
+            small: 10
+            tiny: 4
+            very_tiny: 2
+training:
+    value:
+        base_lr: 3e-05
+        batch_size: 1
+        best_checkpoint_metric: val_dice
+        best_checkpoint_mode: max
+        case_sampling:
+            enabled: false
+            epoch_length_multiplier: 1
+            positive_fraction: 0.7
+            replacement: true
+        class_weights:
+            - 1
+            - 2
+        deep_supervision_loss: false
+        final_validation: false
+        find_unused_parameters: true
+        fold: 0
+        full_warmup_epochs: 3
+        grad_clip_norm: 8
+        head_warmup_epochs: 0
+        loss: dice_ce
+        max_epochs: 60
+        metric_threshold: 0.5
+        min_lr: 1e-07
+        num_folds: 5
+        num_workers: 8
+        optimizer: adamw
+        partial_warmup_epochs: 0
+        poly_power: 0.9
+        prefetch_factor: 3
+        save_every_epoch: false
+        seed: 42
+        staged_tuning:
+            enabled: false
+            full_lr: 3e-05
+            head_lr: 0.001
+            head_only_epochs: 0
+            head_patterns:
+                - seg_layers
+                - seg
+                - final
+                - classifier
+                - output
+            partial_lr: 0.0001
+            partial_patterns:
+                - decoder
+                - transpconvs
+                - seg_layers
+            partial_tune_epochs: 0
+        use_amp: true
+        validation_interval_epochs: 1
+        warmup_epochs: 3
+        weight_decay: 1e-05
+wandb:
+    value:
+        enabled: true
+        entity: da25s003-indian-institute-of-technology-madras
+        mode: online
+        name: ddp-full-finetune-low-lr-f0
+        notes: Full fine-tuning from best_tr_f1_kpcyjb66.pt; DDP 2 GPUs; best checkpoint selected by validation Dice.
+        project: AIMS-TBI-MultiTalentV2
+        tags:
+            - multitalentv2
+            - tbi
+            - fold
+            - ddp
+            - full-finetune

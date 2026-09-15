@@ -1,0 +1,223 @@
+_wandb:
+    value:
+        cli_version: 0.27.2
+        e:
+            7kqeq6ul3bmcjfhmhm93ppmi94qewzsf:
+                args:
+                    - --config
+                    - config.yml
+                    - --fold
+                    - "0"
+                codePath: train.py
+                codePathLocal: train.py
+                cpu_count: 32
+                cpu_count_logical: 64
+                cudaVersion: "13.0"
+                disk:
+                    /:
+                        total: "431856721920"
+                        used: "252658814976"
+                email: da25s003@smail.iitm.ac.in
+                executable: /data/data/DA25S005/miccai_tbi/hdbet_env/bin/python3
+                git:
+                    commit: 7e2a800a8ba73c1f0b215e7ab11cfb73f5b73f1b
+                    remote: git@github-harshit:harshit-8118/MICCAI_TBI.git
+                gpu: NVIDIA RTX A6000
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 10752
+                      memoryTotal: "51527024640"
+                      name: NVIDIA RTX A6000
+                      uuid: GPU-8e00b543-f120-f6e9-1e29-77d719a09e98
+                host: mirl-a6000
+                memory:
+                    total: "270065782784"
+                os: Linux-6.8.0-111-generic-x86_64-with-glibc2.35
+                program: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/train.py
+                python: CPython 3.10.12
+                root: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/wandb
+                startedAt: "2026-07-01T04:18:14.350579Z"
+                writerId: 7kqeq6ul3bmcjfhmhm93ppmi94qewzsf
+        m: []
+        python_version: 3.10.12
+        t:
+            "1":
+                - 1
+                - 5
+                - 53
+            "2":
+                - 1
+                - 5
+                - 53
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+                - 61
+                - 62
+            "4": 3.10.12
+            "5": 0.27.2
+            "8":
+                - 2
+            "10":
+                - 20
+            "12": 0.27.2
+            "13": linux-x86_64
+data:
+    value:
+        allow_missing_modalities: true
+        cache_preprocessed: true
+        dmri_b0_threshold: 50
+        dmri_reduce: mean
+        include_dmri: false
+        input_modalities:
+            - T1
+        normalize_foreground_only: true
+        oversample_foreground_prob: 0.33
+        patch_size:
+            - 160
+            - 160
+            - 160
+        target_spacing:
+            - 1
+            - 1
+            - 1
+ensemble:
+    value:
+        checkpoints:
+            - checkpoints/trained_models/best_tr_f1_kpcyjb66.pt
+            - checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_tiny.pt
+            - checkpoints/tbi_multitalentv2/segmenter_a/fold_1/best_gt50.pt
+            - checkpoints/trained_models/best_714109.pt
+        enabled: true
+        load_mode: preload
+        min_component_voxels: 0
+        output_name: ensemble3_tta_f1_2
+        threshold: 0.1
+        tta: flips
+inference:
+    value:
+        overlap: 0.5
+        roi_size:
+            - 160
+            - 160
+            - 160
+        sw_batch_size: 4
+        use_amp: true
+model:
+    value:
+        deep_supervision: false
+        in_channels: 1
+        load_pretrained: true
+        out_channels: 2
+        skip_pretrained_name_patterns:
+            - seg
+            - final
+            - classifier
+            - output
+        strict_load: false
+paths:
+    value:
+        cache_dir: checkpoints/cache
+        dataset_dir: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI
+        predictions_dir: predictions
+        pretrained_checkpoint: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/checkpoint_final.pth
+        pretrained_plans: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json
+        splits_file: checkpoints/train_val_test_10fold_seed42.json
+        work_dir: checkpoints/tbi_multitalentv2
+segmenter_a:
+    value:
+        epoch_length_multiplier: 1
+        filters_dir: checkpoints/tbi_multitalentv2/case_filters
+        hard_negative:
+            center_sampling_prob: 0.85
+            empty_fraction: 0.15
+            enabled: false
+            manifest_path: checkpoints/tbi_multitalentv2/hard_negatives/fold_1/train_empty_fp_components.csv
+            max_centers_per_case: 8
+        init_checkpoint: checkpoints/trained_models/best_tr_f1_kpcyjb66.pt
+        min_component_voxels: 0
+        output_subdir: segmenter_a
+        probability_threshold: 0.5
+        selection_metric: dice_gt_over_selection_min
+        selection_min_lesion_voxels: 50
+        size_weights:
+            empty: 1
+            large: 1.5
+            small: 2.5
+            tiny: 4
+            very_tiny: 6
+        train_min_lesion_voxels: 1
+        val_min_lesion_voxels: 1
+training:
+    value:
+        base_lr: 0.0001
+        batch_size: 2
+        best_checkpoint_metric: val_dice
+        best_checkpoint_mode: max
+        case_sampling:
+            enabled: false
+            epoch_length_multiplier: 1
+            positive_fraction: 0.65
+            replacement: true
+            size_weights:
+                empty: 1
+                large: 1.5
+                small: 2
+                tiny: 3
+        class_weights:
+            - 1
+            - 2
+        final_validation: false
+        fold: 0
+        full_warmup_epochs: 2
+        grad_clip_norm: 8
+        head_warmup_epochs: 10
+        loss: dice_ce
+        max_epochs: 300
+        metric_threshold: 0.5
+        min_lr: 1e-08
+        num_folds: 10
+        num_workers: 16
+        optimizer: adamw
+        partial_warmup_epochs: 5
+        poly_power: 0.9
+        prefetch_factor: 4
+        save_every_epoch: false
+        seed: 42
+        staged_tuning:
+            enabled: true
+            full_lr: 0.0001
+            head_lr: 0.001
+            head_only_epochs: 0
+            head_patterns:
+                - seg_layers
+                - seg
+                - final
+                - classifier
+                - output
+            partial_lr: 0.0003
+            partial_patterns:
+                - decoder
+                - transpconvs
+                - seg_layers
+            partial_tune_epochs: 0
+        use_amp: true
+        validation_interval_epochs: 1
+        warmup_epochs: 10
+        weight_decay: 2e-05
+wandb:
+    value:
+        enabled: true
+        entity: da25s003-indian-institute-of-technology-madras
+        mode: online
+        name: null
+        notes: ""
+        project: AIMS-TBI-MultiTalentV2
+        tags:
+            - multitalentv2
+            - tbi
+            - fold
+            - 1stage

@@ -114,5 +114,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-# python train.py --config config.yml --init-checkpoint /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt --wandb-name resume_training_ddp_with128
