@@ -1,0 +1,92 @@
+{
+  "config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/config.yml",
+  "branch": "none",
+  "dataset_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100",
+  "output_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/validation2025_100/ensemble_2_models_e5ohnz5w_tta_ddp_kpcyjb66_tta_hybrid",
+  "checkpoints": [
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+  ],
+  "ensemble_strategy": "probability_average",
+  "thresholds": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5
+  ],
+  "min_components": [
+    0,
+    3,
+    5,
+    10,
+    20,
+    40
+  ],
+  "m1_thresholds": null,
+  "m1_min_components": null,
+  "m2_thresholds": null,
+  "m2_min_components": null,
+  "m1_support_thresholds": [
+    0.15
+  ],
+  "support_radii": [
+    0
+  ],
+  "support_min_overlap_voxels": 1,
+  "support_min_overlap_ratio": 0.0,
+  "final_min_components": [
+    0
+  ],
+  "postprocess": "none",
+  "core_thresholds": [
+    NaN
+  ],
+  "halo_thresholds": [
+    0.1
+  ],
+  "dilation_radius": 0,
+  "dilate_min_component_voxels": 1,
+  "core_min_component_voxels": [
+    1
+  ],
+  "max_growth_ratios": [
+    0.0
+  ],
+  "max_grown_component_voxels": 0,
+  "tta": "none",
+  "checkpoint_ttas": [
+    "flips3",
+    "flips3"
+  ],
+  "checkpoint_tta_pairs": [
+    {
+      "checkpoint": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+      "tta": "flips3"
+    },
+    {
+      "checkpoint": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt",
+      "tta": "flips3"
+    }
+  ],
+  "load_mode": "preload",
+  "save_lesions": true,
+  "skip_surface": false,
+  "target_spacing": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "roi_size": [
+    160,
+    160,
+    160
+  ],
+  "overlap": 0.5,
+  "sw_batch_size": 4,
+  "n_sweep_settings": 30,
+  "n_manifest_rows": 103,
+  "n_matched_cases": 103,
+  "n_missing_labels": 0,
+  "n_missing_images": 0
+}

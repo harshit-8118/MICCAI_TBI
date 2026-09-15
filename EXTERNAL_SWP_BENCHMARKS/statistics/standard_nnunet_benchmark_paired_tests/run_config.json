@@ -1,0 +1,117 @@
+{
+  "analysis": "paired fixed-setting conventional standard-nnU-Net versus Model-B benchmark with percentile bootstrap CIs and two-sided paired label-swap tests",
+  "analysis_id": "standard_nnunet_benchmark",
+  "report_root": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100",
+  "output_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/statistics/standard_nnunet_benchmark_paired_tests",
+  "operating_points": [
+    {
+      "threshold": 0.2,
+      "min_component_voxels": 40
+    },
+    {
+      "threshold": 0.5,
+      "min_component_voxels": 0
+    }
+  ],
+  "configurations": [
+    {
+      "label": "Standard nnU-Net (final, mirror TTA)",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/standard_nnunet_model_b_matched/checkpoint_final_standard_mirror_tta_fixed_metrics",
+      "model_a_tta": "",
+      "model_b_tta": "",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/standard_nnunet_model_b_matched/checkpoint_final_standard_mirror_tta_fixed_metrics/run_config.json",
+        "run_config_sha256": "3ac9cb19d7153e55a8eb27b4a681e01723b9b7c9a3f769c671c12e7b1d8e94ba",
+        "checkpoints": [],
+        "checkpoint_roles": [],
+        "checkpoints_by_role": {},
+        "checkpoint_ttas_raw": [],
+        "checkpoint_ttas_canonical": []
+      }
+    },
+    {
+      "label": "Model B TTA",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103",
+      "model_a_tta": "",
+      "model_b_tta": "flips3",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103/run_config.json",
+        "run_config_sha256": "3797f032cef291b1d24de29b22a943b6f5db3b3866a1600a79b75485c578e457",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+        ],
+        "checkpoint_roles": [
+          "model_b"
+        ],
+        "checkpoints_by_role": {
+          "model_b": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "flips3"
+        ],
+        "checkpoint_ttas_canonical": [
+          "flips3"
+        ]
+      }
+    }
+  ],
+  "checkpoint_identity_by_role": {
+    "model_b": {
+      "canonical_recorded_checkpoint_path": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt",
+      "canonical_resolved_checkpoint_path": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt",
+      "accepted_recorded_checkpoint_paths": [
+        "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+      ],
+      "accepted_resolved_checkpoint_paths": [
+        "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+      ],
+      "sha256": null
+    }
+  },
+  "checkpoint_path_aliases": {},
+  "contrasts": [
+    {
+      "contrast_id": "standard_nnunet_vs_model_b_tta",
+      "contrast": "Standard nnU-Net (final, mirror TTA) - Model B TTA",
+      "left_configuration": "Standard nnU-Net (final, mirror TTA)",
+      "right_configuration": "Model B TTA",
+      "scientific_question": "Conventional end-to-end benchmark; architecture, initialization, and native TTA scheme differ, so this does not isolate pretraining"
+    }
+  ],
+  "metrics": [
+    {
+      "metric_key": "dice",
+      "metric": "Dice+",
+      "unit": "unitless",
+      "direction": "higher_is_better"
+    },
+    {
+      "metric_key": "hd95",
+      "metric": "HD95+",
+      "unit": "mm",
+      "direction": "lower_is_better"
+    },
+    {
+      "metric_key": "assd",
+      "metric": "ASSD+",
+      "unit": "mm",
+      "direction": "lower_is_better"
+    }
+  ],
+  "case_subset": "ground_truth_positive (gt_voxels > 0)",
+  "expected_postprocess": "none",
+  "bootstrap_replicates": 10000,
+  "permutation_replicates": 10000,
+  "seed": 42,
+  "confidence_level": 0.95,
+  "interval_method": "percentile paired bootstrap (2.5th and 97.5th percentiles)",
+  "test_method": "two-sided within-case label-swap permutation test",
+  "multiplicity": "Holm adjustment separately for the 1 pre-specified conventional baseline contrast within each metric and operating point",
+  "selection_note": "This script evaluates only the supplied locked operating points and does not select models, thresholds, or minCC values.",
+  "input_sha256": {
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/standard_nnunet_model_b_matched/checkpoint_final_standard_mirror_tta_fixed_metrics/case_metrics_thr0p2_mincc40.csv": "bd0692a817b0179932d42145ad9e4bdc9cc4b79c03ea1dcf96896db95539c0ae",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103/case_metrics_thr0p2_mincc40.csv": "a945b3ed32dfdb2cbc1d4437ba13cbb529b4d0afcde7580fec1ca4e33b324036",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/standard_nnunet_model_b_matched/checkpoint_final_standard_mirror_tta_fixed_metrics/case_metrics_thr0p5_mincc0.csv": "10790a842a76b5417c3101dfcbbf93457a4d447932e22582c999ede771414f75",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103/case_metrics_thr0p5_mincc0.csv": "c6b25fdc5124bfa666285d7e32bc12d53fa712146f84044c000eaa1f682a54c4"
+  }
+}

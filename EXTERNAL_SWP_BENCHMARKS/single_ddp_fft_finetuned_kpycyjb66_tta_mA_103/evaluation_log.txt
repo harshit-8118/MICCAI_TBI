@@ -1,0 +1,28 @@
+External Validation2025_100 evaluation
+Dataset: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100
+Output: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_tta_mA_103
+Matched cases: 103
+Missing labels: 0
+Missing images: 0
+Branch: none
+Checkpoints: 1
+Ensemble strategy: probability_average
+Postprocess: none
+Core thresholds: [nan]
+Halo thresholds: [0.1]
+Dilation radius: 0
+Dilate min component voxels: 1
+Core min component voxels: [1]
+Max growth ratios: [0.0]
+Max grown component voxels: 0
+TTA: none
+Checkpoint TTAs: ['flips3']
+Load mode: preload
+Saved lesion masks: 0
+Surface metrics: HD95 and ASSD
+
+Top settings by local ranking proxy (Dice rank + HD95 rank + ASSD rank within this sweep):
+thr=0.200 mincc=40 rank_sum=  4 dice=0.6844 hd95=55.8530 assd=48.9284 pos=0.5907 gt50=0.5907 missed=0 empty_fp=10
+thr=0.500 mincc=40 rank_sum=  5 dice=0.7098 hd95=57.8490 assd=51.7016 pos=0.5656 gt50=0.5656 missed=5 empty_fp=6
+thr=0.500 mincc=0 rank_sum=  9 dice=0.6128 hd95=80.9281 assd=74.1167 pos=0.5659 gt50=0.5659 missed=0 empty_fp=16
+thr=0.200 mincc=0 rank_sum= 12 dice=0.5590 hd95=109.7017 assd=103.6442 pos=0.5924 gt50=0.5924 missed=0 empty_fp=23

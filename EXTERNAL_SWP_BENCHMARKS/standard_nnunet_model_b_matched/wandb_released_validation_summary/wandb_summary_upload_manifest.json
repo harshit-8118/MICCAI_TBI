@@ -1,0 +1,12 @@
+{
+  "data_status": "development_only_not_independent_test",
+  "entity": "da25s003-indian-institute-of-technology-madras",
+  "mode": "online",
+  "name": "standard_nnunet_fold0_checkpoint_final_released_validation",
+  "project": "AIMS-TBI-standard-nnUNet",
+  "summary": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/standard_nnunet_model_b_matched/checkpoint_final_standard_mirror_tta_fixed_metrics/summary.csv",
+  "uploaded_settings": [
+    "tau_0.20_mincc_40",
+    "tau_0.50_mincc_0"
+  ]
+}

@@ -1,0 +1,26 @@
+External Validation2025_100 evaluation
+Dataset: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100
+Output: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/random_residual_nnunet_no_tta_103
+Matched cases: 103
+Missing labels: 0
+Missing images: 0
+Branch: none
+Checkpoints: 1
+Ensemble strategy: probability_average
+Postprocess: none
+Core thresholds: [nan]
+Halo thresholds: [0.1]
+Dilation radius: 0
+Dilate min component voxels: 1
+Core min component voxels: [1]
+Max growth ratios: [0.0]
+Max grown component voxels: 0
+TTA: none
+Checkpoint TTAs: ['none']
+Load mode: preload
+Saved lesion masks: 0
+Surface metrics: HD95 and ASSD
+
+Top settings by local ranking proxy (Dice rank + HD95 rank + ASSD rank within this sweep):
+thr=0.200 mincc=40 rank_sum=  3 dice=0.7039 hd95=40.8232 assd=32.3254 pos=0.5365 gt50=0.5365 missed=1 empty_fp=5
+thr=0.500 mincc=0 rank_sum=  6 dice=0.5271 hd95=117.2612 assd=110.5196 pos=0.5326 gt50=0.5326 missed=1 empty_fp=23

@@ -1,0 +1,89 @@
+{
+  "config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/baselines/random_residual_nnunet/model_b_matched_random_init.yaml",
+  "branch": "none",
+  "dataset_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100",
+  "output_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/random_residual_nnunet_no_tta_103",
+  "checkpoints": [
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/paper_baselines/random_residual_model_b_matched/fold_0/best.pt"
+  ],
+  "ensemble_strategy": "probability_average",
+  "thresholds": [
+    0.2,
+    0.5
+  ],
+  "min_components": [
+    0,
+    40
+  ],
+  "locked_settings": [
+    {
+      "threshold": 0.2,
+      "min_component_voxels": 40
+    },
+    {
+      "threshold": 0.5,
+      "min_component_voxels": 0
+    }
+  ],
+  "m1_thresholds": null,
+  "m1_min_components": null,
+  "m2_thresholds": null,
+  "m2_min_components": null,
+  "m1_support_thresholds": [
+    0.15
+  ],
+  "support_radii": [
+    0
+  ],
+  "support_min_overlap_voxels": 1,
+  "support_min_overlap_ratio": 0.0,
+  "final_min_components": [
+    0
+  ],
+  "postprocess": "none",
+  "core_thresholds": [
+    NaN
+  ],
+  "halo_thresholds": [
+    0.1
+  ],
+  "dilation_radius": 0,
+  "dilate_min_component_voxels": 1,
+  "core_min_component_voxels": [
+    1
+  ],
+  "max_growth_ratios": [
+    0.0
+  ],
+  "max_grown_component_voxels": 0,
+  "tta": "none",
+  "checkpoint_ttas": [
+    "none"
+  ],
+  "checkpoint_tta_pairs": [
+    {
+      "checkpoint": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/paper_baselines/random_residual_model_b_matched/fold_0/best.pt",
+      "tta": "none"
+    }
+  ],
+  "load_mode": "preload",
+  "save_lesions": false,
+  "skip_surface": false,
+  "target_spacing": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "roi_size": [
+    160,
+    160,
+    160
+  ],
+  "overlap": 0.5,
+  "sw_batch_size": 4,
+  "n_sweep_settings": 2,
+  "n_manifest_rows": 103,
+  "n_matched_cases": 103,
+  "n_missing_labels": 0,
+  "n_missing_images": 0
+}

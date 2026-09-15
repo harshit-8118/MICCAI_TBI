@@ -4,7 +4,6 @@
 *.npz
 MICCAI_AIMS_TBI
 MultiTalentV2_pretrained
-Validation2025_100/
 *.pyc
 wandb
 *.env

@@ -1,0 +1,11 @@
+{
+    "folder_with_segs_from_prev_stage": null,
+    "list_of_lists_or_source_folder": "checkpoints/Validation2025_100/standard_nnunet_model_b_matched/released_validation_inputs",
+    "num_parts": 1,
+    "num_processes_preprocessing": 3,
+    "num_processes_segmentation_export": 3,
+    "output_folder_or_list_of_truncated_output_files": "checkpoints/Validation2025_100/standard_nnunet_model_b_matched/checkpoint_final_standard_mirror_tta_predictions",
+    "overwrite": true,
+    "part_id": 0,
+    "save_probabilities": true
+}

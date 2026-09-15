@@ -1,0 +1,32 @@
+External Validation2025_100 evaluation
+Dataset: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100
+Output: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/validation2025_100/ensemble_2_models_e5ohnz5w_tta_ddp_kpcyjb66_no_tta_hybrid
+Matched cases: 103
+Missing labels: 0
+Missing images: 0
+Branch: none
+Checkpoints: 2
+Postprocess: none
+Halo thresholds: [0.1]
+Dilation radius: 0
+Dilate min component voxels: 1
+Core min component voxels: 1
+Max growth ratios: [0.0]
+Max grown component voxels: 0
+TTA: none
+Checkpoint TTAs: ['flips', 'none']
+Load mode: preload
+Saved lesion masks: 0
+Surface metrics: HD95 and ASSD
+
+Top settings by local ranking proxy (Dice rank + HD95 rank + ASSD rank within this sweep):
+thr=0.200 mincc= 40 rank_sum=  7 dice=0.7230 hd95=43.2256 assd=35.7552 pos=0.6085 gt50=0.6085 missed=0 empty_fp=7
+thr=0.500 mincc=  3 rank_sum= 10 dice=0.6995 hd95=41.9912 assd=35.3086 pos=0.5645 gt50=0.5645 missed=0 empty_fp=7
+thr=0.500 mincc=  5 rank_sum= 13 dice=0.6994 hd95=42.0393 assd=35.3591 pos=0.5643 gt50=0.5643 missed=0 empty_fp=7
+thr=0.500 mincc= 20 rank_sum= 14 dice=0.7082 hd95=49.3450 assd=43.0882 pos=0.5626 gt50=0.5626 missed=3 empty_fp=6
+thr=0.500 mincc= 40 rank_sum= 15 dice=0.7176 hd95=49.3455 assd=43.1770 pos=0.5620 gt50=0.5620 missed=4 empty_fp=5
+thr=0.500 mincc= 10 rank_sum= 18 dice=0.6982 hd95=45.7325 assd=39.5112 pos=0.5620 gt50=0.5620 missed=1 empty_fp=7
+thr=0.100 mincc= 40 rank_sum= 25 dice=0.7060 hd95=52.6694 assd=44.0137 pos=0.6131 gt50=0.6131 missed=0 empty_fp=9
+thr=0.200 mincc= 20 rank_sum= 26 dice=0.7028 hd95=52.1483 assd=44.2023 pos=0.6071 gt50=0.6071 missed=0 empty_fp=9
+thr=0.300 mincc= 40 rank_sum= 27 dice=0.7177 hd95=54.3872 assd=47.8459 pos=0.5986 gt50=0.5986 missed=3 empty_fp=7
+thr=0.500 mincc=  0 rank_sum= 27 dice=0.6802 hd95=49.7912 assd=43.6118 pos=0.5647 gt50=0.5647 missed=0 empty_fp=9

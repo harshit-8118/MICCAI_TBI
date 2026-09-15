@@ -1,0 +1,1211 @@
+model,threshold,min_component_voxels,operating_point,case_id,gt_voxels,gt_category,missed_positive,included_in_positive_excluding_complete_misses_metrics
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,1,False
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+Model A no-TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+Model A TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,1,False
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,1,False
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,1,False
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+Model B no-TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,1,False
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,1,False
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+Model B TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,1,False
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+A+B no-TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+A+B no-TTA/TTA (submitted),0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,1,False
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+A+B TTA/no-TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+A+B TTA/TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,1,False
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,1,False
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,1,False
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,1,False
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+Random residual nnU-Net no-TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0011,7748,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0025,11779,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0030,21760,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0032,529,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0046,1853,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0051,4195,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0054,280,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0066,19529,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0071,38009,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0083,4099,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0085,8448,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0092,33356,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0095,3726,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0111,18370,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0124,1339,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0128,969,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0132,31383,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0135,24927,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0137,32960,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0143,195,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0151,595,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0154,406,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0162,524,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0165,129,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0172,18907,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0176,400,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0208,357,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0216,254,tiny,1,False
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0231,7663,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0232,1237,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0242,2325,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0260,32805,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0262,1082,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0263,439,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0265,14493,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0274,84,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0276,2136,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0280,1231,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0282,42728,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0293,271,tiny,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0295,25797,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0300,12269,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0305,10960,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0319,1196,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0338,4943,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0342,6707,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0345,5915,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0349,1314,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0357,57715,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0378,19074,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0383,5678,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0384,2677,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0388,170932,large,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_0778,3096,small,0,True
+Random residual nnU-Net TTA,0.2,40,"tau=0.2, minCC=40",scan_1015,19002,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+Model A no-TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+Model A TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,1,False
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,1,False
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,1,False
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+Model B no-TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,1,False
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,1,False
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,1,False
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+Model B TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,1,False
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,1,False
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+A+B no-TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+A+B no-TTA/TTA (submitted),0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,1,False
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,1,False
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+A+B TTA/no-TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+A+B TTA/TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,1,False
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,1,False
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,1,False
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+"Standard nnU-Net (final, mirror TTA)",0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,1,False
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+Random residual nnU-Net no-TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0011,7748,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0025,11779,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0030,21760,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0032,529,tiny,1,False
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0046,1853,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0051,4195,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0054,280,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0066,19529,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0071,38009,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0083,4099,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0085,8448,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0092,33356,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0095,3726,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0111,18370,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0124,1339,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0128,969,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0132,31383,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0135,24927,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0137,32960,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0143,195,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0151,595,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0154,406,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0162,524,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0165,129,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0172,18907,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0176,400,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0208,357,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0216,254,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0231,7663,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0232,1237,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0242,2325,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0260,32805,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0262,1082,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0263,439,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0265,14493,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0274,84,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0276,2136,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0280,1231,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0282,42728,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0293,271,tiny,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0295,25797,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0300,12269,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0305,10960,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0319,1196,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0338,4943,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0342,6707,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0345,5915,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0349,1314,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0357,57715,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0378,19074,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0383,5678,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0384,2677,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0388,170932,large,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_0778,3096,small,0,True
+Random residual nnU-Net TTA,0.5,0,"tau=0.5, minCC=0",scan_1015,19002,large,0,True

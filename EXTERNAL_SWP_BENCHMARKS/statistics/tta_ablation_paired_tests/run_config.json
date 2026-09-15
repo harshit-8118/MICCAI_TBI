@@ -1,0 +1,378 @@
+{
+  "analysis": "paired fixed-setting TTA/ensemble effects with percentile bootstrap CIs and two-sided paired label-swap tests",
+  "report_root": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100",
+  "output_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/statistics/tta_ablation_paired_tests",
+  "operating_points": [
+    {
+      "threshold": 0.2,
+      "min_component_voxels": 40
+    },
+    {
+      "threshold": 0.5,
+      "min_component_voxels": 0
+    }
+  ],
+  "configurations": [
+    {
+      "label": "Model A no-TTA",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_no_tta_mA_103",
+      "model_a_tta": "none",
+      "model_b_tta": "",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_no_tta_mA_103/run_config.json",
+        "run_config_sha256": "57c02a78880584c7d0d315acea340f858d720a805321b10d5bc44b386a52274f",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        ],
+        "checkpoint_roles": [
+          "model_a"
+        ],
+        "checkpoints_by_role": {
+          "model_a": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "none"
+        ],
+        "checkpoint_ttas_canonical": [
+          "none"
+        ]
+      }
+    },
+    {
+      "label": "Model A TTA",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_tta_mA_103",
+      "model_a_tta": "flips3",
+      "model_b_tta": "",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_tta_mA_103/run_config.json",
+        "run_config_sha256": "72319e3ddd89212a79d6cde885c2792dd2bb9356ef114f35eccd15e8059c7ccd",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        ],
+        "checkpoint_roles": [
+          "model_a"
+        ],
+        "checkpoints_by_role": {
+          "model_a": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "flips3"
+        ],
+        "checkpoint_ttas_canonical": [
+          "flips3"
+        ]
+      }
+    },
+    {
+      "label": "Model B no-TTA",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_no_tta_mB_103",
+      "model_a_tta": "",
+      "model_b_tta": "none",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_no_tta_mB_103/run_config.json",
+        "run_config_sha256": "979024dd4ab14b6d6c6bdb64a603c11584e1a869186c018c63dca44e630a955c",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+        ],
+        "checkpoint_roles": [
+          "model_b"
+        ],
+        "checkpoints_by_role": {
+          "model_b": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "none"
+        ],
+        "checkpoint_ttas_canonical": [
+          "none"
+        ]
+      }
+    },
+    {
+      "label": "Model B TTA",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103",
+      "model_a_tta": "",
+      "model_b_tta": "flips3",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103/run_config.json",
+        "run_config_sha256": "3797f032cef291b1d24de29b22a943b6f5db3b3866a1600a79b75485c578e457",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+        ],
+        "checkpoint_roles": [
+          "model_b"
+        ],
+        "checkpoints_by_role": {
+          "model_b": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "flips3"
+        ],
+        "checkpoint_ttas_canonical": [
+          "flips3"
+        ]
+      }
+    },
+    {
+      "label": "A+B no-TTA/no-TTA",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_no_tta_e5ohnz5w_no_tta",
+      "model_a_tta": "none",
+      "model_b_tta": "none",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_no_tta_e5ohnz5w_no_tta/run_config.json",
+        "run_config_sha256": "8f1844237236b8bb507fbf117bbbdd8b6f337d4711adf7d6e9c1a1a6f3889875",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        ],
+        "checkpoint_roles": [
+          "model_b",
+          "model_a"
+        ],
+        "checkpoints_by_role": {
+          "model_b": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+          "model_a": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "none",
+          "none"
+        ],
+        "checkpoint_ttas_canonical": [
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "label": "A+B no-TTA/TTA (submitted)",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_no_tta_hybrid_e5ohnz5w_tta",
+      "model_a_tta": "none",
+      "model_b_tta": "flips3",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_no_tta_hybrid_e5ohnz5w_tta/run_config.json",
+        "run_config_sha256": "9cb920a5e5c4282366abe88a4265a2ca77777ba76a6dbc0ca6d6dadead4d85ef",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        ],
+        "checkpoint_roles": [
+          "model_b",
+          "model_a"
+        ],
+        "checkpoints_by_role": {
+          "model_b": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+          "model_a": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "flips",
+          "none"
+        ],
+        "checkpoint_ttas_canonical": [
+          "flips3",
+          "none"
+        ]
+      }
+    },
+    {
+      "label": "A+B TTA/no-TTA",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_tta_hybrid_e5ohnz5w_no_tta",
+      "model_a_tta": "flips3",
+      "model_b_tta": "none",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_tta_hybrid_e5ohnz5w_no_tta/run_config.json",
+        "run_config_sha256": "2fa1c4afa08c618b00fd75e702447a18ff4ebbc672f62e08b86685b3dc4748b0",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        ],
+        "checkpoint_roles": [
+          "model_b",
+          "model_a"
+        ],
+        "checkpoints_by_role": {
+          "model_b": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+          "model_a": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "none",
+          "flips3"
+        ],
+        "checkpoint_ttas_canonical": [
+          "none",
+          "flips3"
+        ]
+      }
+    },
+    {
+      "label": "A+B TTA/TTA",
+      "report_directory": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_tta_e5ohnz5w_tta",
+      "model_a_tta": "flips3",
+      "model_b_tta": "flips3",
+      "provenance": {
+        "run_config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_tta_e5ohnz5w_tta/run_config.json",
+        "run_config_sha256": "c0c333e8c1c62979471b0fb31e21a3dc03976809b3c0a33e7ae0f3f236829b5b",
+        "checkpoints": [
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+          "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        ],
+        "checkpoint_roles": [
+          "model_b",
+          "model_a"
+        ],
+        "checkpoints_by_role": {
+          "model_b": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt",
+          "model_a": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+        },
+        "checkpoint_ttas_raw": [
+          "flips3",
+          "flips3"
+        ],
+        "checkpoint_ttas_canonical": [
+          "flips3",
+          "flips3"
+        ]
+      }
+    }
+  ],
+  "checkpoint_identity_by_role": {
+    "model_a": {
+      "canonical_recorded_checkpoint_path": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt",
+      "canonical_resolved_checkpoint_path": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt",
+      "accepted_recorded_checkpoint_paths": [
+        "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+      ],
+      "accepted_resolved_checkpoint_paths": [
+        "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_ddp_fft_finetuned_kpcyjb66_data_leaked_0.54_rank1_leaderboard.pt"
+      ],
+      "sha256": null
+    },
+    "model_b": {
+      "canonical_recorded_checkpoint_path": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt",
+      "canonical_resolved_checkpoint_path": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt",
+      "accepted_recorded_checkpoint_paths": [
+        "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt",
+        "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt"
+      ],
+      "accepted_resolved_checkpoint_paths": [
+        "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+      ],
+      "sha256": "a7c3b77ccbd715d6082f41af3eda1b4ad08886a0346fe1b38f48950b91e4da77"
+    }
+  },
+  "checkpoint_path_aliases": {
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_0/best_val_f0_e5ohnz5w.pt": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+  },
+  "contrasts": [
+    {
+      "contrast_id": "single_a_tta_effect",
+      "contrast": "Model A TTA - Model A no-TTA",
+      "left_configuration": "Model A TTA",
+      "right_configuration": "Model A no-TTA",
+      "scientific_question": "TTA effect for Model A alone"
+    },
+    {
+      "contrast_id": "single_b_tta_effect",
+      "contrast": "Model B TTA - Model B no-TTA",
+      "left_configuration": "Model B TTA",
+      "right_configuration": "Model B no-TTA",
+      "scientific_question": "TTA effect for Model B alone"
+    },
+    {
+      "contrast_id": "ensemble_effect_vs_model_a",
+      "contrast": "A+B no-TTA/no-TTA - Model A no-TTA",
+      "left_configuration": "A+B no-TTA/no-TTA",
+      "right_configuration": "Model A no-TTA",
+      "scientific_question": "Ensemble effect relative to Model A without TTA"
+    },
+    {
+      "contrast_id": "ensemble_effect_vs_model_b",
+      "contrast": "A+B no-TTA/no-TTA - Model B no-TTA",
+      "left_configuration": "A+B no-TTA/no-TTA",
+      "right_configuration": "Model B no-TTA",
+      "scientific_question": "Ensemble effect relative to Model B without TTA"
+    },
+    {
+      "contrast_id": "ensemble_b_tta_given_a_no_tta",
+      "contrast": "A+B no-TTA/TTA - A+B no-TTA/no-TTA",
+      "left_configuration": "A+B no-TTA/TTA (submitted)",
+      "right_configuration": "A+B no-TTA/no-TTA",
+      "scientific_question": "Model B TTA effect within ensemble when Model A has no TTA"
+    },
+    {
+      "contrast_id": "ensemble_a_tta_given_b_no_tta",
+      "contrast": "A+B TTA/no-TTA - A+B no-TTA/no-TTA",
+      "left_configuration": "A+B TTA/no-TTA",
+      "right_configuration": "A+B no-TTA/no-TTA",
+      "scientific_question": "Model A TTA effect within ensemble when Model B has no TTA"
+    },
+    {
+      "contrast_id": "ensemble_a_tta_given_b_tta",
+      "contrast": "A+B TTA/TTA - A+B no-TTA/TTA",
+      "left_configuration": "A+B TTA/TTA",
+      "right_configuration": "A+B no-TTA/TTA (submitted)",
+      "scientific_question": "Model A TTA effect within ensemble when Model B has TTA"
+    },
+    {
+      "contrast_id": "ensemble_b_tta_given_a_tta",
+      "contrast": "A+B TTA/TTA - A+B TTA/no-TTA",
+      "left_configuration": "A+B TTA/TTA",
+      "right_configuration": "A+B TTA/no-TTA",
+      "scientific_question": "Model B TTA effect within ensemble when Model A has TTA"
+    },
+    {
+      "contrast_id": "ensemble_tta_placement",
+      "contrast": "A+B no-TTA/TTA - A+B TTA/no-TTA",
+      "left_configuration": "A+B no-TTA/TTA (submitted)",
+      "right_configuration": "A+B TTA/no-TTA",
+      "scientific_question": "Direct asymmetric TTA-placement comparison"
+    }
+  ],
+  "metrics": [
+    {
+      "metric_key": "dice",
+      "metric": "Dice+",
+      "unit": "unitless",
+      "direction": "higher_is_better"
+    },
+    {
+      "metric_key": "hd95",
+      "metric": "HD95+",
+      "unit": "mm",
+      "direction": "lower_is_better"
+    },
+    {
+      "metric_key": "assd",
+      "metric": "ASSD+",
+      "unit": "mm",
+      "direction": "lower_is_better"
+    }
+  ],
+  "case_subset": "ground_truth_positive (gt_voxels > 0)",
+  "expected_postprocess": "none",
+  "bootstrap_replicates": 10000,
+  "permutation_replicates": 10000,
+  "seed": 42,
+  "confidence_level": 0.95,
+  "interval_method": "percentile paired bootstrap (2.5th and 97.5th percentiles)",
+  "test_method": "two-sided within-case label-swap permutation test",
+  "multiplicity": "Holm adjustment separately for the nine pre-specified contrasts within each metric and operating point",
+  "selection_note": "This script evaluates only the supplied locked operating points and does not select models, thresholds, or minCC values.",
+  "input_sha256": {
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_no_tta_mA_103/case_metrics_thr0p2_mincc40.csv": "65de679f2dfe4dcdeabc32729e0056c71fc7dec1087ff7b5ea1de48c1009b5c1",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_tta_mA_103/case_metrics_thr0p2_mincc40.csv": "45b28e51a5ebe6b76f77818e9241aef8daab65e516951453c7dc0ca0ba10ba1d",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_no_tta_mB_103/case_metrics_thr0p2_mincc40.csv": "d12c7935df913bba75933f7a7cea6e550bad787eb0ddc16a1862ac6bd98dac5a",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103/case_metrics_thr0p2_mincc40.csv": "a945b3ed32dfdb2cbc1d4437ba13cbb529b4d0afcde7580fec1ca4e33b324036",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_no_tta_e5ohnz5w_no_tta/case_metrics_thr0p2_mincc40.csv": "9d1935e671c6d06abd77f9380d08dff56124038e03f8944a0812788692099316",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_no_tta_hybrid_e5ohnz5w_tta/case_metrics_thr0p2_mincc40.csv": "e2c7509835117a51d7333df0a73f0691224fe6a00c0be8981f824d488c93cc75",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_tta_hybrid_e5ohnz5w_no_tta/case_metrics_thr0p2_mincc40.csv": "5f3743a00bb54de196972348f55ea0477577a36f2a625bb560b62d88813257fc",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_tta_e5ohnz5w_tta/case_metrics_thr0p2_mincc40.csv": "4234fb1f5b54a6721d291801f4f2c2812cdfe7e1c0e4338b3b25b9595ed29c28",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_no_tta_mA_103/case_metrics_thr0p5_mincc0.csv": "c14d1cf3a28fc94d0fe774e13e2ae3e1231b8a256389b9280a7debd4dc4093ca",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_tta_mA_103/case_metrics_thr0p5_mincc0.csv": "17fd45af08a5ff60d249682e4600a717b152770318f172ad2b975cd40beee28d",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_no_tta_mB_103/case_metrics_thr0p5_mincc0.csv": "afe1f42607c4a941df75c7b8c448912beafa04d7ec7b5903cb576fe51267a459",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103/case_metrics_thr0p5_mincc0.csv": "c6b25fdc5124bfa666285d7e32bc12d53fa712146f84044c000eaa1f682a54c4",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_no_tta_e5ohnz5w_no_tta/case_metrics_thr0p5_mincc0.csv": "c4ab7335b1c0cead7f313d4ff8cea4da83735ccaf66801db02b1793f22e4ec37",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_no_tta_hybrid_e5ohnz5w_tta/case_metrics_thr0p5_mincc0.csv": "984290912a0438135222b7bbe70ab9631de05956e9e85ce2b74a232b3fc80762",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_tta_hybrid_e5ohnz5w_no_tta/case_metrics_thr0p5_mincc0.csv": "478c5f89f72098f108e062025fc37602924a8c9b787ca65c5f843aa218caf7c5",
+    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/ensemble_2_models_ddp_kpcyjb66_tta_e5ohnz5w_tta/case_metrics_thr0p5_mincc0.csv": "c787773a4f77b965bc61f6e6bc76426263de96df77e72c363c5e8502b4bc6521"
+  }
+}

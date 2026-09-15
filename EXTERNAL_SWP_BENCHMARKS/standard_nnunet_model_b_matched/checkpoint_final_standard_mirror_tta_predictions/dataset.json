@@ -1,0 +1,12 @@
+{
+    "channel_names": {
+        "0": "T1w"
+    },
+    "file_ending": ".nii.gz",
+    "labels": {
+        "background": 0,
+        "lesion": 1
+    },
+    "numTraining": 522,
+    "overwrite_image_reader_writer": "NibabelIOWithReorient"
+}
