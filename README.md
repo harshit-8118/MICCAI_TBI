@@ -37,7 +37,6 @@ configuration and checkpoint paths, then use:
 ```bash
 python train.py --config path/to/config.yaml
 python evaluate_external_validation.py --help
-python plot_final_logs_paper_figures.py --help
 ```
 
 Baseline-specific preparation and commands are documented in

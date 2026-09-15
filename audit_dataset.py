@@ -56,12 +56,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-# python3 audit_dataset.py --config config.yml --fold 0
-
-'''
-Dataset directory: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI
-All cases: total=329, lesion_positive=190, lesion_empty=139, dmri=140
-Fold 0 train: total=263, lesion_positive=152, lesion_empty=111, dmri=112
-Fold 0 val: total=66, lesion_positive=38, lesion_empty=28, dmri=28
-'''
+    

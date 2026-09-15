@@ -34,9 +34,9 @@ _wandb:
                 memory:
                     total: "270065782784"
                 os: Linux-6.8.0-111-generic-x86_64-with-glibc2.35
-                program: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/train.py
+                program: /path/to/train.py
                 python: CPython 3.10.12
-                root: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/tbi_multitalentv2/fold_1/wandb
+                root: /path/to/checkpoints/tbi_multitalentv2/fold_1/wandb
                 startedAt: "2026-06-07T00:26:36.470044Z"
                 writerId: cvgnegp8myjzecqp34kjop28wh9kq04m
         m: []
@@ -115,10 +115,10 @@ model:
 paths:
     value:
         cache_dir: checkpoints/cache
-        dataset_dir: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI
+        dataset_dir: /path/to/MICCAI_AIMS_TBI
         predictions_dir: predictions
-        pretrained_checkpoint: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/checkpoint_final.pth
-        pretrained_plans: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json
+        pretrained_checkpoint: /path/to/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/checkpoint_final.pth
+        pretrained_plans: /path/to/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json
         splits_file: checkpoints/tbi_splits_5fold.json
         work_dir: checkpoints/tbi_multitalentv2
 training:

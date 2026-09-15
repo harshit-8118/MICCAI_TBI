@@ -1,10 +1,10 @@
 {
-  "config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/config.yml",
+  "config": "/path/to/config.yml",
   "branch": "none",
-  "dataset_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100",
-  "output_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103",
+  "dataset_dir": "/path/to/Validation2025_100/Validation2025_100",
+  "output_dir": "/path/to/checkpoints/Validation2025_100/best_val_f0_e5ohnz5w_tta_mB_103",
   "checkpoints": [
-    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
+    "/path/to/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt"
   ],
   "ensemble_strategy": "probability_average",
   "thresholds": [
@@ -52,7 +52,7 @@
   ],
   "checkpoint_tta_pairs": [
     {
-      "checkpoint": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt",
+      "checkpoint": "/path/to/archive/Approach_2_Ensemble_Callibrater/checkpoints/trained_models/best_val_f0_e5ohnz5w.pt",
       "tta": "flips3"
     }
   ],

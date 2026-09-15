@@ -1,6 +1,6 @@
 External Validation2025_100 evaluation
-Dataset: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100
-Output: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_no_tta_mA_103
+Dataset: /path/to/Validation2025_100/Validation2025_100
+Output: /path/to/checkpoints/Validation2025_100/single_ddp_fft_finetuned_kpycyjb66_no_tta_mA_103
 Matched cases: 103
 Missing labels: 0
 Missing images: 0

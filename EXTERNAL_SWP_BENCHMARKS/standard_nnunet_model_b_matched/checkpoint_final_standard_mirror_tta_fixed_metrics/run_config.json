@@ -1,7 +1,7 @@
 {
   "analysis": "fixed operating-point evaluation of standard nnU-Net probability exports",
-  "dataset_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100",
-  "prediction_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/standard_nnunet_model_b_matched/checkpoint_final_standard_mirror_tta_predictions",
+  "dataset_dir": "/path/to/Validation2025_100/Validation2025_100",
+  "prediction_dir": "/path/to/checkpoints/Validation2025_100/standard_nnunet_model_b_matched/checkpoint_final_standard_mirror_tta_predictions",
   "target_spacing": [
     1.0,
     1.0,

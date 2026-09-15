@@ -61,8 +61,8 @@ mkdir -p "$nnUNet_raw" "$nnUNet_preprocessed" "$nnUNet_results"
 
 python3 baselines/standard_nnunet/prepare_standard_nnunet_baseline.py \
   --config baselines/standard_nnunet/model_b_matched_baseline.yaml \
-  --source-dataset-dir /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI \
-  --model-b-split-file /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/train_val_test_10fold_seed42.json \
+  --source-dataset-dir /path/to/MICCAI_AIMS_TBI \
+  --model-b-split-file /path/to/checkpoints/train_val_test_10fold_seed42.json \
   --raw-root "$nnUNet_raw" \
   --link-mode hardlink
 ```
@@ -88,7 +88,7 @@ nnUNetv2_plan_and_preprocess -d 501 --verify_dataset_integrity
 python3 baselines/standard_nnunet/report_standard_nnunet_architecture.py \
   --plans "$nnUNet_preprocessed/Dataset501_AIMSTBI_T1_Standard/nnUNetPlans.json" \
   --dataset-json "$nnUNet_raw/Dataset501_AIMSTBI_T1_Standard/dataset.json" \
-  --reference-plans /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json \
+  --reference-plans /path/to/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json \
   --reference-deep-supervision false \
   --output checkpoints/paper_baselines/standard_nnunet_model_b_matched/architecture_report.json
 
@@ -153,7 +153,7 @@ under `nnUNet_raw`, and labels are never copied there.
 
 ```bash
 python3 baselines/standard_nnunet/prepare_released_validation_inference_input.py \
-  --released-validation-dir /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100 \
+  --released-validation-dir /path/to/Validation2025_100/Validation2025_100 \
   --output-dir checkpoints/paper_baselines/standard_nnunet_model_b_matched/released_validation_inputs \
   --link-mode hardlink
 ```
@@ -181,7 +181,7 @@ to apply the fixed `tau=0.20, minCC=40` primary operating point and the fixed
 
 ```bash
 python3 baselines/standard_nnunet/evaluate_standard_nnunet_external.py \
-  --dataset-dir /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100 \
+  --dataset-dir /path/to/Validation2025_100/Validation2025_100 \
   --prediction-dir checkpoints/paper_baselines/standard_nnunet_model_b_matched/phase2_predictions \
   --output-dir checkpoints/paper_baselines/standard_nnunet_model_b_matched/phase2_fixed_evaluation \
   --thresholds 0.20 0.50 \

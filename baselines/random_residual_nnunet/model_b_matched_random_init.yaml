@@ -17,9 +17,9 @@ protocol:
     released_validation: "Not read, cached, copied, planned, or trained on before the final checkpoint is fixed."
 
 paths:
-  dataset_dir: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MICCAI_AIMS_TBI
+  dataset_dir: /path/to/MICCAI_AIMS_TBI
   # This file supplies architecture only; no tensor is loaded from it.
-  pretrained_plans: /data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json
+  pretrained_plans: /path/to/MultiTalentV2_pretrained/Dataset617_nativect/MultiTalent_trainer_4000ep__nnUNetResEncUNetL1x1x1_Plans_znorm_bs24__3d_fullres/fold_all/nnUNetResEncUNetL1x1x1_Plans_znorm_bs24.json
   pretrained_checkpoint: null
   # These paths are relative to this YAML file, not to the shell's cwd.
   splits_file: ../../checkpoints/train_val_test_10fold_seed42.json

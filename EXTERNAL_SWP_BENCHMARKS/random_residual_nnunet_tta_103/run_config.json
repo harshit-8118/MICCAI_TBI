@@ -1,10 +1,10 @@
 {
-  "config": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/baselines/random_residual_nnunet/model_b_matched_random_init.yaml",
+  "config": "/path/to/baselines/random_residual_nnunet/model_b_matched_random_init.yaml",
   "branch": "none",
-  "dataset_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/Validation2025_100/Validation2025_100",
-  "output_dir": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/Validation2025_100/random_residual_nnunet_tta_103",
+  "dataset_dir": "/path/to/Validation2025_100/Validation2025_100",
+  "output_dir": "/path/to/checkpoints/Validation2025_100/random_residual_nnunet_tta_103",
   "checkpoints": [
-    "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/paper_baselines/random_residual_model_b_matched/fold_0/best.pt"
+    "/path/to/checkpoints/paper_baselines/random_residual_model_b_matched/fold_0/best.pt"
   ],
   "ensemble_strategy": "probability_average",
   "thresholds": [
@@ -62,7 +62,7 @@
   ],
   "checkpoint_tta_pairs": [
     {
-      "checkpoint": "/data/data/DA25S005/miccai_tbi/MultiTalentV2_finetuning/checkpoints/paper_baselines/random_residual_model_b_matched/fold_0/best.pt",
+      "checkpoint": "/path/to/checkpoints/paper_baselines/random_residual_model_b_matched/fold_0/best.pt",
       "tta": "flips3"
     }
   ],
