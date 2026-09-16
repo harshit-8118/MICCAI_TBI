@@ -1,5 +1,7 @@
 # Hybrid Ensemble with Multi-Patch Fine-Tuning for Traumatic Brain Injury Segmentation
 
+### [Checkpoints](https://doi.org/10.5281/zenodo.22784159)
+
 This repository contains the code and analysis used for T1-weighted MRI lesion
 segmentation in the AIMS-TBI 2026 challenge. The final system combines two
 MultiTalentV2-initialized residual U-Nets by equal-weight probability averaging:
